@@ -18,7 +18,6 @@
   --pink50:#FBEAF0;--pink800:#72243E;
   --green50:#EAF3DE;--green800:#27500A;
   --teal50:#E1F5EE;--teal800:#085041;
-  --red-text:#8A0E12;
   --radius:8px;--radius-lg:12px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
@@ -41,19 +40,20 @@ table.mx{border-collapse:collapse;font-size:12px;width:100%}
 table.mx th,table.mx td{border:0.5px solid var(--border);vertical-align:top}
 table.mx thead th{background:var(--bg2);font-weight:500;color:var(--text);font-size:11px;padding:10px 12px;text-align:center}
 table.mx thead th.h-left{text-align:left;min-width:145px}
-table.mx thead th.h-client{min-width:115px;max-width:140px;line-height:1.4;white-space:normal;font-size:11px;position:relative}
+table.mx thead th.h-client{min-width:115px;max-width:140px;line-height:1.4;white-space:normal;font-size:11px;position:relative;cursor:pointer}
+table.mx thead th.h-client:hover{background:var(--bg3)}
 .col-del{display:none;position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;line-height:1;padding:1px 3px;border-radius:4px}
 table.mx thead th.h-client:hover .col-del{display:block}
-.col-del:hover{color:#c0392b;background:var(--bg3)}
+.col-del:hover{color:#c0392b}
 tr.scope-row td{background:var(--red50);border-bottom:2px solid var(--red400)}
 tr.scope-row td.scope-label{padding:10px 12px;font-size:11px;font-weight:500;color:var(--red800);white-space:nowrap;vertical-align:middle}
 td.scope-cell{padding:7px 10px;vertical-align:top;cursor:pointer}
-td.scope-cell:hover{background:#F5C4C466}
+td.scope-cell:hover{background:#F5C4C444}
 .scope-items{display:flex;flex-wrap:wrap;gap:4px;min-height:26px;align-items:flex-start}
 .scope-tag{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;white-space:nowrap;transition:all .2s}
 .scope-tag.unassigned{background:var(--red400);color:#fff}
 .scope-tag.assigned{background:var(--bg3);color:var(--text3);border:0.5px solid var(--border2)}
-.scope-plus{font-size:14px;line-height:1;width:22px;height:22px;border-radius:50%;border:0.5px dashed var(--red400);color:var(--red400);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;transition:background .12s}
+.scope-plus{font-size:15px;line-height:1;width:22px;height:22px;border-radius:50%;border:0.5px dashed var(--red400);color:var(--red400);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;transition:background .12s}
 .scope-plus:hover{background:var(--red50)}
 table.mx td.td-person{padding:9px 12px;white-space:nowrap;background:var(--bg);position:relative}
 table.mx tr.person-row:nth-child(even) td{background:var(--bg2)}
@@ -91,8 +91,8 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
 .modal input[type=text]{width:100%;font-size:12px;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
 .modal input[type=text]:focus{border-color:var(--red400)}
 .modal input[type=text].mb{margin-bottom:10px}
-.scope-checkboxes{display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;max-height:210px;overflow-y:auto;margin-bottom:10px}
-.scope-check-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .1s;font-size:12px;color:var(--text)}
+.scope-checkboxes{display:flex;flex-direction:column;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;max-height:210px;overflow-y:auto;margin-bottom:10px}
+.scope-check-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:0.5px solid var(--border);cursor:pointer;font-size:12px;color:var(--text);transition:background .1s}
 .scope-check-row:last-child{border-bottom:none}
 .scope-check-row:hover{background:var(--bg2)}
 .scope-check-row.checked{background:var(--red50)}
@@ -101,7 +101,7 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
 .custom-divider{font-size:11px;color:var(--text3);margin:10px 0 8px;display:flex;align-items:center;gap:8px}
 .custom-divider::before,.custom-divider::after{content:'';flex:1;height:0.5px;background:var(--border)}
 .scope-pick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;min-height:28px;margin-top:6px}
-.sp-tag{font-size:11px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);transition:all .12s;font-family:inherit}
+.sp-tag{font-size:11px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;transition:all .12s}
 .sp-tag:hover{background:var(--bg2)}
 .sp-tag.on{background:var(--red50);color:var(--red800);border-color:var(--red400)}
 .no-scope{font-size:11px;color:var(--text3);font-style:italic}
@@ -116,14 +116,21 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
 .manage-section{margin-bottom:18px}
 .manage-section h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
 .manage-list{margin-bottom:8px}
-.manage-item{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:5px;background:var(--bg2);font-size:12px;gap:6px}
-.manage-item-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-.manage-item-name{font-weight:500;color:var(--text);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.manage-item{display:flex;align-items:stretch;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:5px;background:var(--bg2);overflow:hidden}
+.manage-item-body{flex:1;min-width:0;padding:7px 10px;cursor:pointer;transition:background .12s}
+.manage-item-body:hover{background:var(--red50)}
+.manage-item-body.editing{background:var(--bg);cursor:default;padding:5px 8px}
+.manage-item-name{font-weight:500;color:var(--text);font-size:12px}
 .manage-item-role{font-size:10px;color:var(--text3);margin-top:1px}
-.manage-item-actions{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.manage-item-hint{font-size:10px;color:var(--text3);margin-top:2px;font-style:italic}
+.edit-fields{display:flex;flex-direction:column;gap:4px}
+.edit-field{font-size:12px;padding:5px 8px;border:0.5px solid var(--red400);border-radius:6px;outline:none;font-family:inherit;background:var(--bg);color:var(--text);width:100%}
+.manage-item-actions{display:flex;align-items:center;gap:2px;padding:0 6px;flex-shrink:0;border-left:0.5px solid var(--border)}
 .icon-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:3px 5px;border-radius:4px;line-height:1;font-family:inherit}
 .icon-btn:hover{background:var(--bg3);color:var(--text)}
 .icon-btn.del:hover{color:#c0392b}
+.icon-btn.save-edit{color:var(--red400);font-weight:600}
+.icon-btn.save-edit:hover{color:var(--red600);background:var(--red50)}
 .icon-btn:disabled{opacity:0.25;cursor:default}
 .icon-btn:disabled:hover{background:none;color:var(--text3)}
 .add-row{display:flex;gap:8px;margin-top:4px}
@@ -136,7 +143,6 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
 </style>
 </head>
 <body>
-
 <header>
   <h1>Roles &amp; Responsibilities — Gross Labs</h1>
   <div class="header-right">
@@ -147,16 +153,13 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
     </div>
   </div>
 </header>
-
 <div class="container">
   <div id="table-wrap"><div class="loading">Loading your data...</div></div>
   <div class="below-table">
     <div>
       <div class="hint" style="margin-bottom:8px">
-        <strong>Red tags</strong> = scope item not yet assigned &nbsp;·&nbsp;
-        <strong>Gray tags</strong> = already assigned &nbsp;·&nbsp;
-        <strong>+</strong> on any scope cell to edit that client's scope &nbsp;·&nbsp;
-        <strong>Click any person's cell</strong> to assign items and mark account owner
+        <strong>Red tags</strong> = not yet assigned &nbsp;·&nbsp; <strong>Gray tags</strong> = already assigned &nbsp;·&nbsp;
+        <strong>+</strong> on any scope cell to edit scope &nbsp;·&nbsp; <strong>Click any person's cell</strong> to assign items &amp; mark owner
       </div>
       <div class="legend">
         <div class="legend-item"><div class="legend-owner"></div> Account owner</div>
@@ -168,15 +171,12 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
     <button class="btn-manage" onclick="openManage()" style="align-self:flex-start;margin-top:2px">⚙ Manage team, clients &amp; services</button>
   </div>
 </div>
-
 <div id="modal-wrap"></div>
-
 <script>
 const SUPA_URL='https://ayheqtrgyfqsyvexvztn.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5aGVxdHJneWZxc3l2ZXh2enRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Mzc3OTYsImV4cCI6MjA5NDQxMzc5Nn0.yXaZ7zm_aSHZS3fU_ixBTuUzLMjCizMEhyiSpNYc6p0';
 const DB_TABLE='RolesMatrixData';
 const AV_COLORS=['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9','av10','av11'];
-
 const DEFAULT_PEOPLE=[
   {name:'Caleb',role:'CEO'},{name:'TJ',role:'Operations'},
   {name:'Eli',role:'QC & creative strategy'},{name:'Prajj',role:'QC, creative strategy & ops'},
@@ -194,21 +194,9 @@ let cellState=people.map(()=>clients.map(()=>({primary:'',items:[],owner:false})
 let saveTimer=null;
 
 const hdrs={'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'};
-
-function setStatus(s,label){
-  document.getElementById('save-dot').className='save-dot '+s;
-  document.getElementById('save-label').textContent=label;
-}
-async function dbGet(key){
-  const r=await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}?key=eq.${encodeURIComponent(key)}&select=value`,{headers:hdrs});
-  const d=await r.json();return(d&&d[0])?JSON.parse(d[0].value):null;
-}
-async function dbSet(key,value){
-  await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}`,{
-    method:'POST',headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},
-    body:JSON.stringify({key,value:JSON.stringify(value)})
-  });
-}
+function setStatus(s,l){document.getElementById('save-dot').className='save-dot '+s;document.getElementById('save-label').textContent=l;}
+async function dbGet(k){const r=await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}?key=eq.${encodeURIComponent(k)}&select=value`,{headers:hdrs});const d=await r.json();return(d&&d[0])?JSON.parse(d[0].value):null;}
+async function dbSet(k,v){await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}`,{method:'POST',headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({key:k,value:JSON.stringify(v)})});}
 async function loadData(){
   try{
     const [p,cl,sv,sc,cs]=await Promise.all([dbGet('people'),dbGet('clients'),dbGet('services'),dbGet('scopeState'),dbGet('cellState')]);
@@ -222,23 +210,17 @@ async function loadData(){
 function scheduleSave(){
   setStatus('saving','Saving...');clearTimeout(saveTimer);
   saveTimer=setTimeout(async()=>{
-    try{
-      await Promise.all([dbSet('people',people),dbSet('clients',clients),dbSet('services',services),dbSet('scopeState',scopeState),dbSet('cellState',cellState)]);
-      setStatus('saved','All changes saved');
-    }catch(e){setStatus('error','Save failed');}
+    try{await Promise.all([dbSet('people',people),dbSet('clients',clients),dbSet('services',services),dbSet('scopeState',scopeState),dbSet('cellState',cellState)]);setStatus('saved','All changes saved');}
+    catch(e){setStatus('error','Save failed');}
   },900);
 }
 function avClass(pi){return AV_COLORS[pi%AV_COLORS.length]}
-function initials(name){return name.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase()}
-function getAssignedItems(ci){
-  const a=new Set();
-  people.forEach((_,pi)=>{const s=cellState[pi]&&cellState[pi][ci];if(s&&s.items)s.items.forEach(i=>a.add(i));});
-  return a;
-}
+function initials(n){return n.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase()}
+function getAssigned(ci){const a=new Set();people.forEach((_,pi)=>{const s=cellState[pi]&&cellState[pi][ci];if(s&&s.items)s.items.forEach(i=>a.add(i));});return a;}
 
 function buildTable(){
   let h='<div class="matrix-scroll"><table class="mx"><thead><tr><th class="h-left">Team member</th>';
-  clients.forEach((c,ci)=>h+=`<th class="h-client">${c}<button class="col-del" onclick="confirmDeleteClient(${ci},event)">×</button></th>`);
+  clients.forEach((c,ci)=>h+=`<th class="h-client" onclick="openClientEdit(${ci},event)">${c}<button class="col-del" onclick="confirmDeleteClient(${ci},event)">×</button></th>`);
   h+='</tr></thead><tbody><tr class="scope-row"><td class="scope-label">Client scope</td>';
   clients.forEach((_,ci)=>h+=`<td class="scope-cell" id="sc${ci}" onclick="openScopeModal(${ci})">${scopeCellInner(ci)}</td>`);
   h+='</tr>';
@@ -250,19 +232,12 @@ function buildTable(){
   h+='</tbody></table></div>';
   document.getElementById('table-wrap').innerHTML=h;
 }
-
 function scopeCellInner(ci){
-  const scope=scopeState[ci]||[];
-  const assigned=getAssignedItems(ci);
-  const tags=scope.map(s=>`<span class="scope-tag ${assigned.has(s)?'assigned':'unassigned'}">${s}</span>`).join('');
+  const scope=scopeState[ci]||[];const a=getAssigned(ci);
+  const tags=scope.map(s=>`<span class="scope-tag ${a.has(s)?'assigned':'unassigned'}">${s}</span>`).join('');
   return`<div class="scope-items">${tags}<button class="scope-plus" onclick="event.stopPropagation();openScopeModal(${ci})">+</button></div>`;
 }
-
-function refreshScopeCell(ci){
-  const el=document.getElementById(`sc${ci}`);if(!el)return;
-  el.innerHTML=scopeCellInner(ci);
-  el.onclick=()=>openScopeModal(ci);
-}
+function refreshScopeCell(ci){const el=document.getElementById(`sc${ci}`);if(!el)return;el.innerHTML=scopeCellInner(ci);el.onclick=()=>openScopeModal(ci);}
 function cellHTML(pi,ci){
   const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
   let inner='';
@@ -281,28 +256,43 @@ function refreshCell(pi,ci){
   if(s.primary)inner+=`<div class="cell-primary">${s.primary}</div>`;
   if(s.items&&s.items.length)inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
   if(!s.owner&&!s.primary&&(!s.items||!s.items.length))inner=`<span class="empty-cell">—</span>`;
-  el.innerHTML=inner;
-  refreshScopeCell(ci);
+  el.innerHTML=inner;refreshScopeCell(ci);
+}
+
+/* ---- Inline client name edit via header click ---- */
+function openClientEdit(ci,e){
+  if(e.target.classList.contains('col-del'))return;
+  const th=e.currentTarget;
+  const cur=clients[ci];
+  th.innerHTML=`<input id="cedit_${ci}" type="text" value="${cur}" style="width:100%;font-size:11px;padding:4px 6px;border:0.5px solid var(--red400);border-radius:4px;outline:none;font-family:inherit;background:var(--bg);color:var(--text)" onblur="saveClientEdit(${ci})" onkeydown="if(event.key==='Enter')this.blur();if(event.key==='Escape'){clients[${ci}]='${cur.replace(/'/g,"\\'")}';buildTable();}">`;
+  const inp=document.getElementById(`cedit_${ci}`);
+  inp.focus();inp.select();
+}
+function saveClientEdit(ci){
+  const inp=document.getElementById(`cedit_${ci}`);
+  if(!inp)return;
+  const val=inp.value.trim();
+  if(val)clients[ci]=val;
+  buildTable();scheduleSave();
 }
 
 /* ---- Scope modal ---- */
 let editScope=-1;
 function openScopeModal(ci){editScope=ci;renderScopeModal();}
 function renderScopeModal(){
-  const ci=editScope;
-  const cur=scopeState[ci]||[];
+  const ci=editScope;const cur=scopeState[ci]||[];
   const libRows=services.map(svc=>{
     const chk=cur.includes(svc);
     return`<label class="scope-check-row${chk?' checked':''}" id="scrow_${svc.replace(/\W/g,'_')}">
       <input type="checkbox" ${chk?'checked':''} onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}',this.checked)">
       <span>${svc}</span><span class="src-badge">library</span></label>`;
   }).join('');
-  const customItems=cur.filter(s=>!services.includes(s));
-  const customRows=customItems.map(svc=>`<div class="scope-check-row checked" style="justify-content:space-between">
-    <div style="display:flex;align-items:center;gap:10px"><input type="checkbox" checked onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}'.this.checked)" style="accent-color:var(--red400);width:14px;height:14px"><span>${svc}</span></div>
-    <span class="src-badge">custom</span></div>`).join('');
+  const custom=cur.filter(s=>!services.includes(s));
+  const customRows=custom.map(svc=>`<div class="scope-check-row checked">
+    <input type="checkbox" checked onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}',this.checked)" style="accent-color:var(--red400);width:14px;height:14px;flex-shrink:0">
+    <span>${svc}</span><span class="src-badge">custom</span></div>`).join('');
   document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()">
-    <h3>Scope — ${clients[ci]}</h3><p class="sub">Tick services from your library, or add a one-off below</p>
+    <h3>Scope — ${clients[ci]}</h3><p class="sub">Tick from your service library or add a one-off below</p>
     <div class="scope-checkboxes">${libRows||'<div style="padding:10px 12px;font-size:11px;color:var(--text3);font-style:italic">No services yet — add them in Manage</div>'}${customRows}</div>
     <div class="custom-divider">one-off for this client only</div>
     <div class="add-row"><input type="text" id="new-scope-custom" placeholder="e.g. Brand audit" onkeydown="if(event.key==='Enter')addCustomScopeItem()"><button onclick="addCustomScopeItem()">Add</button></div>
@@ -311,30 +301,19 @@ function renderScopeModal(){
 }
 function toggleScopeItem(svc,checked){
   if(!scopeState[editScope])scopeState[editScope]=[];
-  if(checked){
-    if(!scopeState[editScope].includes(svc))scopeState[editScope].push(svc);
-    const row=document.getElementById('scrow_'+svc.replace(/\W/g,'_'));
-    if(row)row.classList.add('checked');
-  }else{
+  if(checked){if(!scopeState[editScope].includes(svc))scopeState[editScope].push(svc);document.getElementById('scrow_'+svc.replace(/\W/g,'_'))?.classList.add('checked');}
+  else{
     scopeState[editScope]=scopeState[editScope].filter(s=>s!==svc);
-    const row=document.getElementById('scrow_'+svc.replace(/\W/g,'_'));
-    if(row)row.classList.remove('checked');
-    people.forEach((_,pi)=>{
-      if(cellState[pi]&&cellState[pi][editScope]&&cellState[pi][editScope].items)
-        cellState[pi][editScope].items=cellState[pi][editScope].items.filter(i=>i!==svc);
-      refreshCell(pi,editScope);
-    });
+    document.getElementById('scrow_'+svc.replace(/\W/g,'_'))?.classList.remove('checked');
+    people.forEach((_,pi)=>{if(cellState[pi]&&cellState[pi][editScope]&&cellState[pi][editScope].items)cellState[pi][editScope].items=cellState[pi][editScope].items.filter(i=>i!==svc);refreshCell(pi,editScope);});
   }
   refreshScopeCell(editScope);scheduleSave();
 }
 function addCustomScopeItem(){
-  const inp=document.getElementById('new-scope-custom');
-  const val=inp.value.trim();if(!val)return;
+  const inp=document.getElementById('new-scope-custom');const val=inp.value.trim();if(!val)return;
   if(!scopeState[editScope])scopeState[editScope]=[];
-  if(!scopeState[editScope].includes(val)){
-    scopeState[editScope].push(val);inp.value='';
-    refreshScopeCell(editScope);scheduleSave();renderScopeModal();
-  }else inp.value='';
+  if(!scopeState[editScope].includes(val)){scopeState[editScope].push(val);inp.value='';refreshScopeCell(editScope);scheduleSave();renderScopeModal();}
+  else inp.value='';
 }
 
 /* ---- Cell modal ---- */
@@ -363,8 +342,8 @@ function openCellModal(pi,ci){
 function toggleItem(item){
   const s=cellState[editPi][editCi];if(!s.items)s.items=[];
   const btn=document.getElementById('sp_'+item.replace(/\W/g,'_'));
-  if(s.items.includes(item)){s.items=s.items.filter(k=>k!==item);btn&&btn.classList.remove('on');}
-  else{s.items.push(item);btn&&btn.classList.add('on');}
+  if(s.items.includes(item)){s.items=s.items.filter(k=>k!==item);btn?.classList.remove('on');}
+  else{s.items.push(item);btn?.classList.add('on');}
 }
 function saveCell(){
   if(!cellState[editPi])cellState[editPi]=[];
@@ -372,20 +351,18 @@ function saveCell(){
   const s=cellState[editPi][editCi];
   s.primary=document.getElementById('m-primary').value.trim();
   s.owner=document.getElementById('m-owner').checked;
-  refreshCell(editPi,editCi);
-  document.getElementById('modal-wrap').innerHTML='';scheduleSave();
+  refreshCell(editPi,editCi);document.getElementById('modal-wrap').innerHTML='';scheduleSave();
 }
 function clearCell(){
   if(cellState[editPi]&&cellState[editPi][editCi])cellState[editPi][editCi]={primary:'',items:[],owner:false};
-  refreshCell(editPi,editCi);
-  document.getElementById('modal-wrap').innerHTML='';scheduleSave();
+  refreshCell(editPi,editCi);document.getElementById('modal-wrap').innerHTML='';scheduleSave();
 }
 
 /* ---- Manage modal ---- */
 function openManage(){
   document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()" style="width:440px">
     <h3>Manage team, clients &amp; services</h3>
-    <p class="sub">Add, remove, or reorder using the arrows</p>
+    <p class="sub">Click any item to edit it inline. Use arrows to reorder.</p>
     <div class="manage-section">
       <h4 id="mh-people">Team members (${people.length})</h4>
       <div class="manage-list" id="people-list">${renderPeopleList()}</div>
@@ -412,11 +389,62 @@ function openManage(){
   </div></div>`;
 }
 
-function reorderItem(arr,from,to){
-  if(to<0||to>=arr.length)return false;
-  const item=arr.splice(from,1)[0];arr.splice(to,0,item);return true;
+/* ---- Inline edit helpers ---- */
+function startEditPerson(pi){
+  const el=document.getElementById(`pm_${pi}`);
+  el.classList.add('editing');
+  el.innerHTML=`<div class="edit-fields">
+    <input class="edit-field" id="pe-name-${pi}" value="${people[pi].name}" placeholder="Name" onkeydown="if(event.key==='Enter')savePersonEdit(${pi});if(event.key==='Escape')cancelEdit('people-list',renderPeopleList)">
+    <input class="edit-field" id="pe-role-${pi}" value="${people[pi].role}" placeholder="Role" onkeydown="if(event.key==='Enter')savePersonEdit(${pi});if(event.key==='Escape')cancelEdit('people-list',renderPeopleList)">
+  </div>`;
+  document.getElementById(`pe-name-${pi}`).focus();
+}
+function savePersonEdit(pi){
+  const n=document.getElementById(`pe-name-${pi}`)?.value.trim();
+  const r=document.getElementById(`pe-role-${pi}`)?.value.trim();
+  if(n)people[pi].name=n;
+  if(r)people[pi].role=r;
+  document.getElementById('people-list').innerHTML=renderPeopleList();
+  scheduleSave();
+}
+function startEditClient(ci){
+  const el=document.getElementById(`cm_${ci}`);
+  el.classList.add('editing');
+  el.innerHTML=`<div class="edit-fields">
+    <input class="edit-field" id="ce-name-${ci}" value="${clients[ci]}" placeholder="Client name" onkeydown="if(event.key==='Enter')saveClientEditManage(${ci});if(event.key==='Escape')cancelEdit('clients-list',renderClientsList)">
+  </div>`;
+  document.getElementById(`ce-name-${ci}`).focus();
+}
+function saveClientEditManage(ci){
+  const v=document.getElementById(`ce-name-${ci}`)?.value.trim();
+  if(v)clients[ci]=v;
+  document.getElementById('clients-list').innerHTML=renderClientsList();
+  scheduleSave();
+}
+function startEditService(si){
+  const el=document.getElementById(`sm_${si}`);
+  el.classList.add('editing');
+  el.innerHTML=`<div class="edit-fields">
+    <input class="edit-field" id="se-name-${si}" value="${services[si]}" placeholder="Service name" onkeydown="if(event.key==='Enter')saveServiceEdit(${si});if(event.key==='Escape')cancelEdit('services-list',renderServicesList)">
+  </div>`;
+  document.getElementById(`se-name-${si}`).focus();
+}
+function saveServiceEdit(si){
+  const v=document.getElementById(`se-name-${si}`)?.value.trim();
+  if(v){
+    const old=services[si];services[si]=v;
+    // update any scope state references
+    scopeState.forEach(arr=>{const i=arr.indexOf(old);if(i>=0)arr[i]=v;});
+    cellState.forEach(row=>row.forEach(c=>{if(c.items){const i=c.items.indexOf(old);if(i>=0)c.items[i]=v;}}));
+  }
+  document.getElementById('services-list').innerHTML=renderServicesList();
+  scheduleSave();
+}
+function cancelEdit(listId,renderFn){
+  document.getElementById(listId).innerHTML=renderFn();
 }
 
+function reorderItem(arr,from,to){if(to<0||to>=arr.length)return false;arr.splice(to,0,arr.splice(from,1)[0]);return true;}
 function movePerson(pi,dir){
   if(!reorderItem(people,pi,pi+dir))return;
   const row=cellState.splice(pi,1)[0];cellState.splice(pi+dir,0,row);
@@ -442,86 +470,86 @@ function moveService(si,dir){
 function renderPeopleList(){
   if(!people.length)return`<div class="no-scope" style="padding:6px 0 10px">No team members yet</div>`;
   return people.map((p,pi)=>`<div class="manage-item">
-    <div class="manage-item-left"><span class="av ${avClass(pi)}" style="width:24px;height:24px;font-size:9px">${initials(p.name)}</span>
-    <div><div class="manage-item-name">${p.name}</div><div class="manage-item-role">${p.role}</div></div></div>
+    <div class="manage-item-body" id="pm_${pi}" onclick="startEditPerson(${pi})" title="Click to edit">
+      <div style="display:flex;align-items:center;gap:8px"><span class="av ${avClass(pi)}" style="width:24px;height:24px;font-size:9px">${initials(p.name)}</span>
+      <div><div class="manage-item-name">${p.name}</div><div class="manage-item-role">${p.role}</div></div></div>
+      <div class="manage-item-hint">click to edit</div>
+    </div>
     <div class="manage-item-actions">
-      <button class="icon-btn" onclick="movePerson(${pi},-1)" ${pi===0?'disabled':''} title="Move up">↑</button>
-      <button class="icon-btn" onclick="movePerson(${pi},1)" ${pi===people.length-1?'disabled':''} title="Move down">↓</button>
-      <button class="icon-btn del" onclick="removePerson(${pi})" title="Remove">×</button>
+      <button class="icon-btn" onclick="movePerson(${pi},-1)" ${pi===0?'disabled':''}>↑</button>
+      <button class="icon-btn" onclick="movePerson(${pi},1)" ${pi===people.length-1?'disabled':''}>↓</button>
+      <button class="icon-btn del" onclick="removePerson(${pi})">×</button>
     </div>
   </div>`).join('');
 }
 function renderClientsList(){
   if(!clients.length)return`<div class="no-scope" style="padding:6px 0 10px">No clients yet</div>`;
   return clients.map((c,ci)=>`<div class="manage-item">
-    <div class="manage-item-left"><span style="width:8px;height:8px;border-radius:50%;background:var(--red400);display:inline-block;flex-shrink:0"></span><span class="manage-item-name">${c}</span></div>
+    <div class="manage-item-body" id="cm_${ci}" onclick="startEditClient(${ci})" title="Click to edit">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red400);display:inline-block;flex-shrink:0"></span>
+      <span class="manage-item-name">${c}</span></div>
+      <div class="manage-item-hint">click to edit</div>
+    </div>
     <div class="manage-item-actions">
-      <button class="icon-btn" onclick="moveClient(${ci},-1)" ${ci===0?'disabled':''} title="Move up">↑</button>
-      <button class="icon-btn" onclick="moveClient(${ci},1)" ${ci===clients.length-1?'disabled':''} title="Move down">↓</button>
-      <button class="icon-btn del" onclick="removeClient(${ci})" title="Remove">×</button>
+      <button class="icon-btn" onclick="moveClient(${ci},-1)" ${ci===0?'disabled':''}>↑</button>
+      <button class="icon-btn" onclick="moveClient(${ci},1)" ${ci===clients.length-1?'disabled':''}>↓</button>
+      <button class="icon-btn del" onclick="removeClient(${ci})">×</button>
     </div>
   </div>`).join('');
 }
 function renderServicesList(){
   if(!services.length)return`<div class="no-scope" style="padding:6px 0 10px">No services yet</div>`;
   return services.map((s,i)=>`<div class="manage-item">
-    <div class="manage-item-left"><span style="width:8px;height:8px;border-radius:2px;background:var(--red400);display:inline-block;flex-shrink:0"></span><span class="manage-item-name">${s}</span></div>
+    <div class="manage-item-body" id="sm_${i}" onclick="startEditService(${i})" title="Click to edit">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:2px;background:var(--red400);display:inline-block;flex-shrink:0"></span>
+      <span class="manage-item-name">${s}</span></div>
+      <div class="manage-item-hint">click to edit</div>
+    </div>
     <div class="manage-item-actions">
-      <button class="icon-btn" onclick="moveService(${i},-1)" ${i===0?'disabled':''} title="Move up">↑</button>
-      <button class="icon-btn" onclick="moveService(${i},1)" ${i===services.length-1?'disabled':''} title="Move down">↓</button>
-      <button class="icon-btn del" onclick="removeService(${i})" title="Remove">×</button>
+      <button class="icon-btn" onclick="moveService(${i},-1)" ${i===0?'disabled':''}>↑</button>
+      <button class="icon-btn" onclick="moveService(${i},1)" ${i===services.length-1?'disabled':''}>↓</button>
+      <button class="icon-btn del" onclick="removeService(${i})">×</button>
     </div>
   </div>`).join('');
 }
 
 function addPerson(){
-  const n=document.getElementById('np-name').value.trim();
-  const r=document.getElementById('np-role').value.trim();if(!n)return;
-  people.push({name:n,role:r||'Team member'});
-  cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
+  const n=document.getElementById('np-name').value.trim();const r=document.getElementById('np-role').value.trim();if(!n)return;
+  people.push({name:n,role:r||'Team member'});cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
   document.getElementById('np-name').value='';document.getElementById('np-role').value='';
   document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
-  scheduleSave();
+  document.getElementById('mh-people').textContent=`Team members (${people.length})`;scheduleSave();
 }
 function removePerson(pi){
   if(!confirm(`Remove ${people[pi].name}?`))return;
   people.splice(pi,1);cellState.splice(pi,1);
   document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
-  scheduleSave();
+  document.getElementById('mh-people').textContent=`Team members (${people.length})`;scheduleSave();
 }
 function addClient(){
   const v=document.getElementById('nc').value.trim();if(!v)return;
-  clients.push(v);scopeState.push([]);
-  cellState.forEach(row=>row.push({primary:'',items:[],owner:false}));
+  clients.push(v);scopeState.push([]);cellState.forEach(row=>row.push({primary:'',items:[],owner:false}));
   document.getElementById('nc').value='';
   document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
-  scheduleSave();
+  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;scheduleSave();
 }
 function removeClient(ci){
   if(!confirm(`Remove "${clients[ci]}"?`))return;
-  clients.splice(ci,1);scopeState.splice(ci,1);
-  cellState.forEach(row=>row.splice(ci,1));
+  clients.splice(ci,1);scopeState.splice(ci,1);cellState.forEach(row=>row.splice(ci,1));
   document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
-  scheduleSave();
+  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;scheduleSave();
 }
 function addService(){
   const v=document.getElementById('ns').value.trim();if(!v)return;
-  if(!services.includes(v)){
-    services.push(v);document.getElementById('ns').value='';
+  if(!services.includes(v)){services.push(v);document.getElementById('ns').value='';
     document.getElementById('services-list').innerHTML=renderServicesList();
-    document.getElementById('mh-services').textContent=`Service library (${services.length})`;
-    scheduleSave();
-  }else document.getElementById('ns').value='';
+    document.getElementById('mh-services').textContent=`Service library (${services.length})`;scheduleSave();}
+  else document.getElementById('ns').value='';
 }
 function removeService(i){
   services.splice(i,1);
   document.getElementById('services-list').innerHTML=renderServicesList();
-  document.getElementById('mh-services').textContent=`Service library (${services.length})`;
-  scheduleSave();
+  document.getElementById('mh-services').textContent=`Service library (${services.length})`;scheduleSave();
 }
 function confirmDeletePerson(pi,e){
   e.stopPropagation();if(!confirm(`Remove ${people[pi].name}?`))return;
@@ -529,14 +557,11 @@ function confirmDeletePerson(pi,e){
 }
 function confirmDeleteClient(ci,e){
   e.stopPropagation();if(!confirm(`Remove "${clients[ci]}"?`))return;
-  clients.splice(ci,1);scopeState.splice(ci,1);
-  cellState.forEach(row=>row.splice(ci,1));scheduleSave();buildTable();
+  clients.splice(ci,1);scopeState.splice(ci,1);cellState.forEach(row=>row.splice(ci,1));scheduleSave();buildTable();
 }
 function closeMW(e){
-  if(!e||e.target.classList.contains('modal-bg'))
-    document.getElementById('modal-wrap').innerHTML='';
+  if(!e||e.target.classList.contains('modal-bg'))document.getElementById('modal-wrap').innerHTML='';
 }
-
 (async()=>{await loadData();buildTable();})();
 </script>
 </body>
