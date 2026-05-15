@@ -10,14 +10,15 @@
   --bg:#ffffff;--bg2:#f7f7f5;--bg3:#f0efe9;
   --text:#1a1a18;--text2:#6b6a64;--text3:#9c9a92;
   --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
-  --teal50:#E1F5EE;--teal400:#1D9E75;--teal600:#0F6E56;--teal800:#085041;
+  --red50:#FFF0F0;--red400:#E0191F;--red600:#B81318;--red800:#8A0E12;
   --purple50:#EEEDFE;--purple800:#3C3489;
   --blue50:#E6F1FB;--blue800:#0C447C;
   --amber50:#FAEEDA;--amber800:#633806;
   --coral50:#FAECE7;--coral800:#712B13;
   --pink50:#FBEAF0;--pink800:#72243E;
   --green50:#EAF3DE;--green800:#27500A;
-  --red50:#FCEBEB;--red800:#791F1F;
+  --teal50:#E1F5EE;--teal800:#085041;
+  --red-text:#8A0E12;
   --radius:8px;--radius-lg:12px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
@@ -27,12 +28,14 @@ header h1{font-size:14px;font-weight:500}
 .save-status{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px}
 .save-dot{width:7px;height:7px;border-radius:50%;background:var(--text3);transition:background .3s;flex-shrink:0}
 .save-dot.saving{background:#f59e0b}
-.save-dot.saved{background:var(--teal400)}
+.save-dot.saved{background:var(--red400)}
 .save-dot.error{background:#ef4444}
 .btn-manage{font-size:11px;padding:5px 12px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2);transition:background .12s;white-space:nowrap}
 .btn-manage:hover{background:var(--bg2)}
 .container{padding:16px 20px}
-.hint{font-size:12px;color:var(--text3);margin-bottom:14px;padding:10px 14px;border:0.5px dashed var(--border2);border-radius:var(--radius);background:var(--bg);line-height:1.6}
+.below-table{margin-top:14px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.hint{font-size:11px;color:var(--text3);line-height:1.7;max-width:600px}
+.hint strong{color:var(--text2);font-weight:500}
 .matrix-scroll{overflow-x:auto;border-radius:var(--radius-lg);border:0.5px solid var(--border);background:var(--bg)}
 table.mx{border-collapse:collapse;font-size:12px;width:100%}
 table.mx th,table.mx td{border:0.5px solid var(--border);vertical-align:top}
@@ -42,14 +45,16 @@ table.mx thead th.h-client{min-width:115px;max-width:140px;line-height:1.4;white
 .col-del{display:none;position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;line-height:1;padding:1px 3px;border-radius:4px}
 table.mx thead th.h-client:hover .col-del{display:block}
 .col-del:hover{color:#c0392b;background:var(--bg3)}
-tr.scope-row td{background:var(--teal50);border-bottom:2px solid var(--teal400)}
-tr.scope-row td.scope-label{padding:10px 12px;font-size:11px;font-weight:500;color:var(--teal800);white-space:nowrap;vertical-align:middle}
+tr.scope-row td{background:var(--red50);border-bottom:2px solid var(--red400)}
+tr.scope-row td.scope-label{padding:10px 12px;font-size:11px;font-weight:500;color:var(--red800);white-space:nowrap;vertical-align:middle}
 td.scope-cell{padding:7px 10px;vertical-align:top;cursor:pointer}
-td.scope-cell:hover{background:#9FE1CB33}
+td.scope-cell:hover{background:#F5C4C466}
 .scope-items{display:flex;flex-wrap:wrap;gap:4px;min-height:26px;align-items:flex-start}
-.scope-tag{font-size:10px;padding:3px 8px;border-radius:20px;background:var(--teal600);color:#E1F5EE;font-weight:500;white-space:nowrap}
-.scope-add{font-size:10px;padding:3px 8px;border-radius:20px;border:0.5px dashed var(--teal400);color:var(--teal600);background:transparent;cursor:pointer;white-space:nowrap;font-family:inherit}
-.scope-add:hover{background:var(--teal50)}
+.scope-tag{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;white-space:nowrap;transition:all .2s}
+.scope-tag.unassigned{background:var(--red400);color:#fff}
+.scope-tag.assigned{background:var(--bg3);color:var(--text3);border:0.5px solid var(--border2)}
+.scope-plus{font-size:14px;line-height:1;width:22px;height:22px;border-radius:50%;border:0.5px dashed var(--red400);color:var(--red400);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;transition:background .12s}
+.scope-plus:hover{background:var(--red50)}
 table.mx td.td-person{padding:9px 12px;white-space:nowrap;background:var(--bg);position:relative}
 table.mx tr.person-row:nth-child(even) td{background:var(--bg2)}
 table.mx tr.person-row:nth-child(even) td.td-person{background:var(--bg2)}
@@ -58,73 +63,76 @@ table.mx tr.person-row:hover .row-del{display:block}
 .row-del:hover{color:#c0392b}
 table.mx td.cell{padding:7px 10px;min-width:115px;cursor:pointer;transition:background .12s}
 table.mx td.cell:hover{background:rgba(0,0,0,0.03)}
-table.mx td.cell.is-owner{border-top:2px solid var(--teal400)}
+table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
 .av{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-size:9px;font-weight:600;margin-right:8px;vertical-align:middle;flex-shrink:0}
-.av0{background:var(--teal50);color:var(--teal800)}.av1{background:var(--blue50);color:var(--blue800)}
+.av0{background:#FFF0F0;color:#8A0E12}.av1{background:var(--blue50);color:var(--blue800)}
 .av2{background:var(--amber50);color:var(--amber800)}.av3{background:var(--purple50);color:var(--purple800)}
 .av4{background:var(--coral50);color:var(--coral800)}.av5{background:var(--pink50);color:var(--pink800)}
-.av6{background:var(--green50);color:var(--green800)}.av7{background:var(--red50);color:var(--red800)}
+.av6{background:var(--green50);color:var(--green800)}.av7{background:var(--teal50);color:var(--teal800)}
 .av8{background:#FEF3C7;color:#92400E}.av9{background:#EDE9FE;color:#4C1D95}
 .av10{background:#FCE7F3;color:#831843}.av11{background:#ECFDF5;color:#064E3B}
 .person-name{font-weight:500;color:var(--text);font-size:12px}
 .person-role{font-size:10px;color:var(--text3);margin-top:1px}
-.owner-bar{font-size:10px;font-weight:500;color:var(--teal800);display:flex;align-items:center;gap:4px;margin-bottom:4px}
-.owner-dot{width:6px;height:6px;border-radius:50%;background:var(--teal400);flex-shrink:0}
+.owner-bar{font-size:10px;font-weight:500;color:var(--red800);display:flex;align-items:center;gap:4px;margin-bottom:4px}
+.owner-dot{width:6px;height:6px;border-radius:50%;background:var(--red400);flex-shrink:0}
 .cell-primary{font-size:11px;font-weight:500;color:var(--text);margin-bottom:4px}
 .cell-tags{display:flex;flex-wrap:wrap;gap:3px}
 .scope-ref{font-size:10px;padding:2px 6px;border-radius:20px;background:var(--purple50);color:var(--purple800);font-weight:500;white-space:nowrap}
 .empty-cell{color:var(--text3);font-size:11px;font-style:italic}
-.legend{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;font-size:11px;color:var(--text2);align-items:center}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--text2);align-items:center}
 .legend-item{display:flex;align-items:center;gap:5px}
-.legend-owner{width:22px;height:3px;background:var(--teal400);border-radius:2px}
-
-/* Modals */
+.legend-owner{width:22px;height:3px;background:var(--red400);border-radius:2px}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.22);z-index:200;display:flex;align-items:center;justify-content:center}
-.modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:22px;width:360px;max-width:96vw;max-height:90vh;overflow-y:auto}
+.modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:22px;width:380px;max-width:96vw;max-height:90vh;overflow-y:auto}
 .modal h3{font-size:14px;font-weight:500;margin:0 0 3px}
-.modal p.sub{font-size:11px;color:var(--text3);margin:0 0 16px}
-.modal label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;margin-top:10px}
+.modal p.sub{font-size:11px;color:var(--text3);margin:0 0 14px}
+.modal label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;margin-top:12px}
 .modal label:first-of-type{margin-top:0}
 .modal input[type=text]{width:100%;font-size:12px;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
-.modal input[type=text]:focus{border-color:var(--teal400)}
+.modal input[type=text]:focus{border-color:var(--red400)}
 .modal input[type=text].mb{margin-bottom:10px}
+.scope-checkboxes{display:flex;flex-direction:column;gap:0;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;max-height:210px;overflow-y:auto;margin-bottom:10px}
+.scope-check-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .1s;font-size:12px;color:var(--text)}
+.scope-check-row:last-child{border-bottom:none}
+.scope-check-row:hover{background:var(--bg2)}
+.scope-check-row.checked{background:var(--red50)}
+.scope-check-row input[type=checkbox]{accent-color:var(--red400);width:14px;height:14px;flex-shrink:0;cursor:pointer}
+.scope-check-row .src-badge{font-size:10px;color:var(--text3);font-style:italic;margin-left:auto}
+.custom-divider{font-size:11px;color:var(--text3);margin:10px 0 8px;display:flex;align-items:center;gap:8px}
+.custom-divider::before,.custom-divider::after{content:'';flex:1;height:0.5px;background:var(--border)}
 .scope-pick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;min-height:28px;margin-top:6px}
 .sp-tag{font-size:11px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);transition:all .12s;font-family:inherit}
 .sp-tag:hover{background:var(--bg2)}
-.sp-tag.on{background:var(--purple50);color:var(--purple800);border-color:#AFA9EC}
+.sp-tag.on{background:var(--red50);color:var(--red800);border-color:var(--red400)}
 .no-scope{font-size:11px;color:var(--text3);font-style:italic}
 .owner-toggle{display:flex;align-items:center;gap:8px;margin-bottom:16px;margin-top:12px;font-size:12px;color:var(--text2);cursor:pointer}
-.owner-toggle input{accent-color:var(--teal400);width:14px;height:14px}
+.owner-toggle input{accent-color:var(--red400);width:14px;height:14px}
 .modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
 .modal-btns button{font-size:12px;padding:7px 16px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text);transition:background .12s}
 .modal-btns button:hover{background:var(--bg2)}
-.modal-btns button.primary{background:var(--teal400);color:white;border-color:var(--teal400)}
-.modal-btns button.primary:hover{background:var(--teal600)}
+.modal-btns button.primary{background:var(--red400);color:white;border-color:var(--red400)}
+.modal-btns button.primary:hover{background:var(--red600)}
 .btn-clear{color:#c0392b!important}
-.scope-list{margin-bottom:12px}
-.scope-list-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border);font-size:12px}
-.scope-list-item:last-child{border-bottom:none}
-.rm-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:0 4px;line-height:1}
-.rm-btn:hover{color:#c0392b}
+.manage-section{margin-bottom:18px}
+.manage-section h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.manage-list{margin-bottom:8px}
+.manage-item{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:5px;background:var(--bg2);font-size:12px;gap:6px}
+.manage-item-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.manage-item-name{font-weight:500;color:var(--text);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.manage-item-role{font-size:10px;color:var(--text3);margin-top:1px}
+.manage-item-actions{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:3px 5px;border-radius:4px;line-height:1;font-family:inherit}
+.icon-btn:hover{background:var(--bg3);color:var(--text)}
+.icon-btn.del:hover{color:#c0392b}
+.icon-btn:disabled{opacity:0.25;cursor:default}
+.icon-btn:disabled:hover{background:none;color:var(--text3)}
 .add-row{display:flex;gap:8px;margin-top:4px}
 .add-row input{flex:1;font-size:12px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
-.add-row input:focus{border-color:var(--teal400)}
-.add-row button{font-size:12px;padding:7px 14px;border-radius:var(--radius);border:none;background:var(--teal400);color:white;cursor:pointer;font-family:inherit;white-space:nowrap}
-.add-row button:hover{background:var(--teal600)}
-
-/* Manage panel */
-.manage-section{margin-bottom:20px}
-.manage-section h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
-.manage-list{margin-bottom:10px}
-.manage-item{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:6px;background:var(--bg2);font-size:12px}
-.manage-item-left{display:flex;align-items:center;gap:8px}
-.manage-item-info{display:flex;flex-direction:column}
-.manage-item-name{font-weight:500;color:var(--text);font-size:12px}
-.manage-item-role{font-size:10px;color:var(--text3);margin-top:1px}
-.del-item{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:2px 5px;border-radius:4px;line-height:1}
-.del-item:hover{color:#c0392b;background:var(--bg3)}
+.add-row input:focus{border-color:var(--red400)}
+.add-row button{font-size:12px;padding:7px 14px;border-radius:var(--radius);border:none;background:var(--red400);color:white;cursor:pointer;font-family:inherit;white-space:nowrap}
+.add-row button:hover{background:var(--red600)}
 .loading{display:flex;align-items:center;justify-content:center;padding:60px 20px;font-size:13px;color:var(--text3)}
-.divider{height:0.5px;background:var(--border);margin:16px 0}
+.divider{height:0.5px;background:var(--border);margin:14px 0}
 </style>
 </head>
 <body>
@@ -132,7 +140,7 @@ table.mx td.cell.is-owner{border-top:2px solid var(--teal400)}
 <header>
   <h1>Roles &amp; Responsibilities — Gross Labs</h1>
   <div class="header-right">
-    <button class="btn-manage" onclick="openManage()">⚙ Manage team &amp; clients</button>
+    <button class="btn-manage" onclick="openManage()">⚙ Manage</button>
     <div class="save-status">
       <div class="save-dot" id="save-dot"></div>
       <span id="save-label">Loading...</span>
@@ -141,114 +149,101 @@ table.mx td.cell.is-owner{border-top:2px solid var(--teal400)}
 </header>
 
 <div class="container">
-  <div class="hint">Click the <strong>green scope row</strong> to define what's in contract for each client &nbsp;·&nbsp; Click any <strong>person's cell</strong> to assign their role and tasks &nbsp;·&nbsp; Use <strong>⚙ Manage</strong> to add or remove team members and clients</div>
   <div id="table-wrap"><div class="loading">Loading your data...</div></div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-owner"></div> Account owner</div>
-    <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--teal400)"></span> Scope row</div>
-    <div class="legend-item"><span class="scope-ref">Strategy</span> Assigned scope item</div>
+  <div class="below-table">
+    <div>
+      <div class="hint" style="margin-bottom:8px">
+        <strong>Red tags</strong> = scope item not yet assigned &nbsp;·&nbsp;
+        <strong>Gray tags</strong> = already assigned &nbsp;·&nbsp;
+        <strong>+</strong> on any scope cell to edit that client's scope &nbsp;·&nbsp;
+        <strong>Click any person's cell</strong> to assign items and mark account owner
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-owner"></div> Account owner</div>
+        <div class="legend-item"><span class="scope-tag unassigned" style="font-size:10px;padding:2px 8px">Strategy</span> Unassigned</div>
+        <div class="legend-item"><span class="scope-tag assigned" style="font-size:10px;padding:2px 8px">Editing</span> Assigned</div>
+        <div class="legend-item"><span class="scope-ref">Strategy</span> Person's task</div>
+      </div>
+    </div>
+    <button class="btn-manage" onclick="openManage()" style="align-self:flex-start;margin-top:2px">⚙ Manage team, clients &amp; services</button>
   </div>
 </div>
 
 <div id="modal-wrap"></div>
 
 <script>
-const SUPA_URL = 'https://ayheqtrgyfqsyvexvztn.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5aGVxdHJneWZxc3l2ZXh2enRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Mzc3OTYsImV4cCI6MjA5NDQxMzc5Nn0.yXaZ7zm_aSHZS3fU_ixBTuUzLMjCizMEhyiSpNYc6p0';
-const DB_TABLE = 'RolesMatrixData';
+const SUPA_URL='https://ayheqtrgyfqsyvexvztn.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5aGVxdHJneWZxc3l2ZXh2enRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Mzc3OTYsImV4cCI6MjA5NDQxMzc5Nn0.yXaZ7zm_aSHZS3fU_ixBTuUzLMjCizMEhyiSpNYc6p0';
+const DB_TABLE='RolesMatrixData';
+const AV_COLORS=['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9','av10','av11'];
 
-const AV_COLORS = ['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9','av10','av11'];
-
-const DEFAULT_PEOPLE = [
-  {name:'Caleb',   role:'CEO'},
-  {name:'TJ',      role:'Operations'},
-  {name:'Eli',     role:'QC & creative strategy'},
-  {name:'Prajj',   role:'QC, creative strategy & ops'},
-  {name:'Mazhar',  role:'Editor'},
-  {name:'Aloum',   role:'Editor'},
-  {name:'Lindsey', role:'Editor & creative ideation'},
-  {name:'Erie',    role:'Graphic designer'},
+const DEFAULT_PEOPLE=[
+  {name:'Caleb',role:'CEO'},{name:'TJ',role:'Operations'},
+  {name:'Eli',role:'QC & creative strategy'},{name:'Prajj',role:'QC, creative strategy & ops'},
+  {name:'Mazhar',role:'Editor'},{name:'Aloum',role:'Editor'},
+  {name:'Lindsey',role:'Editor & creative ideation'},{name:'Erie',role:'Graphic designer'},
 ];
+const DEFAULT_CLIENTS=['Find Your Grind','Nick Gross','Gross Labs','LAGC','Josh Suggs','StreetTalk','Liteyear Golf','Lights On Podcast'];
+const DEFAULT_SERVICES=['Strategy','Editing','Graphics','Sprint planning','Social media','Content creation','QC','Operations','Creative ideation','Paid media'];
 
-const DEFAULT_CLIENTS = [
-  'Find Your Grind','Nick Gross','Gross Labs','LAGC',
-  'Josh Suggs','StreetTalk','Liteyear Golf','Lights On Podcast'
-];
+let people=DEFAULT_PEOPLE.map(p=>({...p}));
+let clients=[...DEFAULT_CLIENTS];
+let services=[...DEFAULT_SERVICES];
+let scopeState=clients.map(()=>[]);
+let cellState=people.map(()=>clients.map(()=>({primary:'',items:[],owner:false})));
+let saveTimer=null;
 
-let people      = DEFAULT_PEOPLE.map(p=>({...p}));
-let clients     = [...DEFAULT_CLIENTS];
-let scopeState  = clients.map(()=>[]);
-let cellState   = people.map(()=>clients.map(()=>({primary:'',items:[],owner:false})));
-let saveTimer   = null;
-
-const hdrs = {'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'};
+const hdrs={'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'};
 
 function setStatus(s,label){
   document.getElementById('save-dot').className='save-dot '+s;
   document.getElementById('save-label').textContent=label;
 }
-
 async function dbGet(key){
   const r=await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}?key=eq.${encodeURIComponent(key)}&select=value`,{headers:hdrs});
-  const d=await r.json();
-  return(d&&d[0])?JSON.parse(d[0].value):null;
+  const d=await r.json();return(d&&d[0])?JSON.parse(d[0].value):null;
 }
-
 async function dbSet(key,value){
   await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}`,{
-    method:'POST',
-    headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},
+    method:'POST',headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},
     body:JSON.stringify({key,value:JSON.stringify(value)})
   });
 }
-
 async function loadData(){
   try{
-    const [p,cl,sc,cs]=await Promise.all([dbGet('people'),dbGet('clients'),dbGet('scopeState'),dbGet('cellState')]);
-    if(p)  people=p;
-    if(cl) clients=cl;
-    if(sc) scopeState=sc;
-    if(cs) cellState=cs;
-    // Ensure dimensions match
-    while(scopeState.length<clients.length) scopeState.push([]);
-    while(cellState.length<people.length)   cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
+    const [p,cl,sv,sc,cs]=await Promise.all([dbGet('people'),dbGet('clients'),dbGet('services'),dbGet('scopeState'),dbGet('cellState')]);
+    if(p)people=p;if(cl)clients=cl;if(sv)services=sv;if(sc)scopeState=sc;if(cs)cellState=cs;
+    while(scopeState.length<clients.length)scopeState.push([]);
+    while(cellState.length<people.length)cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
     cellState.forEach(row=>{while(row.length<clients.length)row.push({primary:'',items:[],owner:false});});
     setStatus('saved','All changes saved');
-  }catch(e){
-    setStatus('error','Could not connect');
-  }
+  }catch(e){setStatus('error','Could not connect');}
 }
-
 function scheduleSave(){
-  setStatus('saving','Saving...');
-  clearTimeout(saveTimer);
+  setStatus('saving','Saving...');clearTimeout(saveTimer);
   saveTimer=setTimeout(async()=>{
     try{
-      await Promise.all([
-        dbSet('people',people),
-        dbSet('clients',clients),
-        dbSet('scopeState',scopeState),
-        dbSet('cellState',cellState)
-      ]);
+      await Promise.all([dbSet('people',people),dbSet('clients',clients),dbSet('services',services),dbSet('scopeState',scopeState),dbSet('cellState',cellState)]);
       setStatus('saved','All changes saved');
     }catch(e){setStatus('error','Save failed');}
   },900);
 }
-
 function avClass(pi){return AV_COLORS[pi%AV_COLORS.length]}
 function initials(name){return name.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase()}
+function getAssignedItems(ci){
+  const a=new Set();
+  people.forEach((_,pi)=>{const s=cellState[pi]&&cellState[pi][ci];if(s&&s.items)s.items.forEach(i=>a.add(i));});
+  return a;
+}
 
 function buildTable(){
   let h='<div class="matrix-scroll"><table class="mx"><thead><tr><th class="h-left">Team member</th>';
-  clients.forEach((c,ci)=>h+=`<th class="h-client">${c}<button class="col-del" onclick="confirmDeleteClient(${ci},event)" title="Remove client">×</button></th>`);
+  clients.forEach((c,ci)=>h+=`<th class="h-client">${c}<button class="col-del" onclick="confirmDeleteClient(${ci},event)">×</button></th>`);
   h+='</tr></thead><tbody><tr class="scope-row"><td class="scope-label">Client scope</td>';
-  clients.forEach((_,ci)=>{
-    const tags=(scopeState[ci]||[]).map(s=>`<span class="scope-tag">${s}</span>`).join('');
-    h+=`<td class="scope-cell" id="sc${ci}" onclick="openScopeModal(${ci})"><div class="scope-items">${tags}<button class="scope-add">+ Add scope</button></div></td>`;
-  });
+  clients.forEach((_,ci)=>h+=`<td class="scope-cell" id="sc${ci}" onclick="openScopeModal(${ci})">${scopeCellInner(ci)}</td>`);
   h+='</tr>';
   people.forEach((p,pi)=>{
-    h+=`<tr class="person-row"><td class="td-person"><div style="display:flex;align-items:center;padding-right:18px"><span class="av ${avClass(pi)}">${initials(p.name)}</span><div><div class="person-name">${p.name}</div><div class="person-role">${p.role}</div></div></div><button class="row-del" onclick="confirmDeletePerson(${pi},event)" title="Remove person">×</button></td>`;
+    h+=`<tr class="person-row"><td class="td-person"><div style="display:flex;align-items:center;padding-right:18px"><span class="av ${avClass(pi)}">${initials(p.name)}</span><div><div class="person-name">${p.name}</div><div class="person-role">${p.role}</div></div></div><button class="row-del" onclick="confirmDeletePerson(${pi},event)">×</button></td>`;
     clients.forEach((_,ci)=>h+=cellHTML(pi,ci));
     h+='</tr>';
   });
@@ -256,73 +251,90 @@ function buildTable(){
   document.getElementById('table-wrap').innerHTML=h;
 }
 
+function scopeCellInner(ci){
+  const scope=scopeState[ci]||[];
+  const assigned=getAssignedItems(ci);
+  const tags=scope.map(s=>`<span class="scope-tag ${assigned.has(s)?'assigned':'unassigned'}">${s}</span>`).join('');
+  return`<div class="scope-items">${tags}<button class="scope-plus" onclick="event.stopPropagation();openScopeModal(${ci})">+</button></div>`;
+}
+
+function refreshScopeCell(ci){
+  const el=document.getElementById(`sc${ci}`);if(!el)return;
+  el.innerHTML=scopeCellInner(ci);
+  el.onclick=()=>openScopeModal(ci);
+}
 function cellHTML(pi,ci){
   const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
   let inner='';
-  if(s.owner)  inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
+  if(s.owner)inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
   if(s.primary)inner+=`<div class="cell-primary">${s.primary}</div>`;
   if(s.items&&s.items.length)inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
   if(!s.owner&&!s.primary&&(!s.items||!s.items.length))inner=`<span class="empty-cell">—</span>`;
-  return `<td class="cell${s.owner?' is-owner':''}" id="c${pi}_${ci}" onclick="openCellModal(${pi},${ci})">${inner}</td>`;
+  return`<td class="cell${s.owner?' is-owner':''}" id="c${pi}_${ci}" onclick="openCellModal(${pi},${ci})">${inner}</td>`;
 }
-
 function refreshCell(pi,ci){
   const el=document.getElementById(`c${pi}_${ci}`);if(!el)return;
   const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
   el.className=`cell${s.owner?' is-owner':''}`;
   let inner='';
-  if(s.owner)  inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
+  if(s.owner)inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
   if(s.primary)inner+=`<div class="cell-primary">${s.primary}</div>`;
   if(s.items&&s.items.length)inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
   if(!s.owner&&!s.primary&&(!s.items||!s.items.length))inner=`<span class="empty-cell">—</span>`;
   el.innerHTML=inner;
-}
-
-function refreshScopeCell(ci){
-  const el=document.getElementById(`sc${ci}`);if(!el)return;
-  const tags=(scopeState[ci]||[]).map(s=>`<span class="scope-tag">${s}</span>`).join('');
-  el.innerHTML=`<div class="scope-items">${tags}<button class="scope-add">+ Add scope</button></div>`;
-  el.onclick=()=>openScopeModal(ci);
-  people.forEach((_,pi)=>{
-    if(!cellState[pi])return;
-    if(!cellState[pi][ci])cellState[pi][ci]={primary:'',items:[],owner:false};
-    if(!cellState[pi][ci].items)cellState[pi][ci].items=[];
-    cellState[pi][ci].items=cellState[pi][ci].items.filter(i=>(scopeState[ci]||[]).includes(i));
-    refreshCell(pi,ci);
-  });
+  refreshScopeCell(ci);
 }
 
 /* ---- Scope modal ---- */
 let editScope=-1;
-function openScopeModal(ci){
-  editScope=ci;
-  const mw=document.getElementById('modal-wrap');
-  mw.innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()">
-    <h3>Scope — ${clients[ci]}</h3><p class="sub">What's in contract for this client</p>
-    <div class="scope-list" id="sl">${renderScopeList(scopeState[ci]||[])}</div>
-    <div class="add-row"><input type="text" id="new-scope" placeholder="e.g. Sprint planning" onkeydown="if(event.key==='Enter')addScopeItem()"><button onclick="addScopeItem()">Add</button></div>
+function openScopeModal(ci){editScope=ci;renderScopeModal();}
+function renderScopeModal(){
+  const ci=editScope;
+  const cur=scopeState[ci]||[];
+  const libRows=services.map(svc=>{
+    const chk=cur.includes(svc);
+    return`<label class="scope-check-row${chk?' checked':''}" id="scrow_${svc.replace(/\W/g,'_')}">
+      <input type="checkbox" ${chk?'checked':''} onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}',this.checked)">
+      <span>${svc}</span><span class="src-badge">library</span></label>`;
+  }).join('');
+  const customItems=cur.filter(s=>!services.includes(s));
+  const customRows=customItems.map(svc=>`<div class="scope-check-row checked" style="justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px"><input type="checkbox" checked onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}'.this.checked)" style="accent-color:var(--red400);width:14px;height:14px"><span>${svc}</span></div>
+    <span class="src-badge">custom</span></div>`).join('');
+  document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()">
+    <h3>Scope — ${clients[ci]}</h3><p class="sub">Tick services from your library, or add a one-off below</p>
+    <div class="scope-checkboxes">${libRows||'<div style="padding:10px 12px;font-size:11px;color:var(--text3);font-style:italic">No services yet — add them in Manage</div>'}${customRows}</div>
+    <div class="custom-divider">one-off for this client only</div>
+    <div class="add-row"><input type="text" id="new-scope-custom" placeholder="e.g. Brand audit" onkeydown="if(event.key==='Enter')addCustomScopeItem()"><button onclick="addCustomScopeItem()">Add</button></div>
     <div class="modal-btns"><button class="primary" onclick="closeMW()">Done</button></div>
   </div></div>`;
 }
-
-function renderScopeList(items){
-  if(!items.length)return`<div class="no-scope" style="padding:8px 0 12px">No items yet — add below</div>`;
-  return items.map((s,i)=>`<div class="scope-list-item"><span>${s}</span><button class="rm-btn" onclick="removeScopeItem(${i})">×</button></div>`).join('');
+function toggleScopeItem(svc,checked){
+  if(!scopeState[editScope])scopeState[editScope]=[];
+  if(checked){
+    if(!scopeState[editScope].includes(svc))scopeState[editScope].push(svc);
+    const row=document.getElementById('scrow_'+svc.replace(/\W/g,'_'));
+    if(row)row.classList.add('checked');
+  }else{
+    scopeState[editScope]=scopeState[editScope].filter(s=>s!==svc);
+    const row=document.getElementById('scrow_'+svc.replace(/\W/g,'_'));
+    if(row)row.classList.remove('checked');
+    people.forEach((_,pi)=>{
+      if(cellState[pi]&&cellState[pi][editScope]&&cellState[pi][editScope].items)
+        cellState[pi][editScope].items=cellState[pi][editScope].items.filter(i=>i!==svc);
+      refreshCell(pi,editScope);
+    });
+  }
+  refreshScopeCell(editScope);scheduleSave();
 }
-
-function addScopeItem(){
-  const inp=document.getElementById('new-scope');
+function addCustomScopeItem(){
+  const inp=document.getElementById('new-scope-custom');
   const val=inp.value.trim();if(!val)return;
   if(!scopeState[editScope])scopeState[editScope]=[];
-  scopeState[editScope].push(val);inp.value='';
-  document.getElementById('sl').innerHTML=renderScopeList(scopeState[editScope]);
-  refreshScopeCell(editScope);scheduleSave();
-}
-
-function removeScopeItem(idx){
-  scopeState[editScope].splice(idx,1);
-  document.getElementById('sl').innerHTML=renderScopeList(scopeState[editScope]);
-  refreshScopeCell(editScope);scheduleSave();
+  if(!scopeState[editScope].includes(val)){
+    scopeState[editScope].push(val);inp.value='';
+    refreshScopeCell(editScope);scheduleSave();renderScopeModal();
+  }else inp.value='';
 }
 
 /* ---- Cell modal ---- */
@@ -348,15 +360,12 @@ function openCellModal(pi,ci){
     </div>
   </div></div>`;
 }
-
 function toggleItem(item){
-  const s=cellState[editPi][editCi];
-  if(!s.items)s.items=[];
+  const s=cellState[editPi][editCi];if(!s.items)s.items=[];
   const btn=document.getElementById('sp_'+item.replace(/\W/g,'_'));
   if(s.items.includes(item)){s.items=s.items.filter(k=>k!==item);btn&&btn.classList.remove('on');}
   else{s.items.push(item);btn&&btn.classList.add('on');}
 }
-
 function saveCell(){
   if(!cellState[editPi])cellState[editPi]=[];
   if(!cellState[editPi][editCi])cellState[editPi][editCi]={primary:'',items:[],owner:false};
@@ -364,118 +373,165 @@ function saveCell(){
   s.primary=document.getElementById('m-primary').value.trim();
   s.owner=document.getElementById('m-owner').checked;
   refreshCell(editPi,editCi);
-  document.getElementById('modal-wrap').innerHTML='';
-  scheduleSave();
+  document.getElementById('modal-wrap').innerHTML='';scheduleSave();
 }
-
 function clearCell(){
-  if(cellState[editPi]&&cellState[editPi][editCi])
-    cellState[editPi][editCi]={primary:'',items:[],owner:false};
+  if(cellState[editPi]&&cellState[editPi][editCi])cellState[editPi][editCi]={primary:'',items:[],owner:false};
   refreshCell(editPi,editCi);
-  document.getElementById('modal-wrap').innerHTML='';
-  scheduleSave();
+  document.getElementById('modal-wrap').innerHTML='';scheduleSave();
 }
 
 /* ---- Manage modal ---- */
 function openManage(){
-  const mw=document.getElementById('modal-wrap');
-  mw.innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()" style="width:420px">
-    <h3>Manage team &amp; clients</h3>
-    <p class="sub">Add or remove team members and clients</p>
+  document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()" style="width:440px">
+    <h3>Manage team, clients &amp; services</h3>
+    <p class="sub">Add, remove, or reorder using the arrows</p>
     <div class="manage-section">
-      <h4>Team members (${people.length})</h4>
+      <h4 id="mh-people">Team members (${people.length})</h4>
       <div class="manage-list" id="people-list">${renderPeopleList()}</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div class="add-row"><input type="text" id="new-person-name" placeholder="Name" onkeydown="if(event.key==='Enter')document.getElementById('new-person-role').focus()"><input type="text" id="new-person-role" placeholder="Role / title" onkeydown="if(event.key==='Enter')addPerson()" style="flex:1.4;font-size:12px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)"><button onclick="addPerson()">Add</button></div>
+      <div class="add-row">
+        <input type="text" id="np-name" placeholder="Name" style="flex:0.8" onkeydown="if(event.key==='Enter')document.getElementById('np-role').focus()">
+        <input type="text" id="np-role" placeholder="Role / title" onkeydown="if(event.key==='Enter')addPerson()" style="flex:1.2;font-size:12px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)">
+        <button onclick="addPerson()">Add</button>
       </div>
     </div>
     <div class="divider"></div>
-    <div class="manage-section" style="margin-bottom:0">
-      <h4>Clients (${clients.length})</h4>
+    <div class="manage-section">
+      <h4 id="mh-clients">Clients (${clients.length})</h4>
       <div class="manage-list" id="clients-list">${renderClientsList()}</div>
-      <div class="add-row"><input type="text" id="new-client" placeholder="Client name" onkeydown="if(event.key==='Enter')addClient()"><button onclick="addClient()">Add</button></div>
+      <div class="add-row"><input type="text" id="nc" placeholder="Client name" onkeydown="if(event.key==='Enter')addClient()"><button onclick="addClient()">Add</button></div>
+    </div>
+    <div class="divider"></div>
+    <div class="manage-section" style="margin-bottom:0">
+      <h4 id="mh-services">Service library (${services.length})</h4>
+      <p style="font-size:11px;color:var(--text3);margin-bottom:8px;margin-top:-6px">These appear as options when setting client scope</p>
+      <div class="manage-list" id="services-list">${renderServicesList()}</div>
+      <div class="add-row"><input type="text" id="ns" placeholder="e.g. Email marketing" onkeydown="if(event.key==='Enter')addService()"><button onclick="addService()">Add</button></div>
     </div>
     <div class="modal-btns"><button class="primary" onclick="closeMW();buildTable()">Done</button></div>
   </div></div>`;
 }
 
+function reorderItem(arr,from,to){
+  if(to<0||to>=arr.length)return false;
+  const item=arr.splice(from,1)[0];arr.splice(to,0,item);return true;
+}
+
+function movePerson(pi,dir){
+  if(!reorderItem(people,pi,pi+dir))return;
+  const row=cellState.splice(pi,1)[0];cellState.splice(pi+dir,0,row);
+  document.getElementById('people-list').innerHTML=renderPeopleList();
+  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
+  scheduleSave();
+}
+function moveClient(ci,dir){
+  if(!reorderItem(clients,ci,ci+dir))return;
+  const sc=scopeState.splice(ci,1)[0];scopeState.splice(ci+dir,0,sc);
+  cellState.forEach(row=>{const c=row.splice(ci,1)[0];row.splice(ci+dir,0,c);});
+  document.getElementById('clients-list').innerHTML=renderClientsList();
+  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
+  scheduleSave();
+}
+function moveService(si,dir){
+  if(!reorderItem(services,si,si+dir))return;
+  document.getElementById('services-list').innerHTML=renderServicesList();
+  document.getElementById('mh-services').textContent=`Service library (${services.length})`;
+  scheduleSave();
+}
+
 function renderPeopleList(){
   if(!people.length)return`<div class="no-scope" style="padding:6px 0 10px">No team members yet</div>`;
   return people.map((p,pi)=>`<div class="manage-item">
-    <div class="manage-item-left"><span class="av ${avClass(pi)}" style="width:28px;height:28px;font-size:10px">${initials(p.name)}</span>
-    <div class="manage-item-info"><span class="manage-item-name">${p.name}</span><span class="manage-item-role">${p.role}</span></div></div>
-    <button class="del-item" onclick="removePerson(${pi})" title="Remove">×</button>
+    <div class="manage-item-left"><span class="av ${avClass(pi)}" style="width:24px;height:24px;font-size:9px">${initials(p.name)}</span>
+    <div><div class="manage-item-name">${p.name}</div><div class="manage-item-role">${p.role}</div></div></div>
+    <div class="manage-item-actions">
+      <button class="icon-btn" onclick="movePerson(${pi},-1)" ${pi===0?'disabled':''} title="Move up">↑</button>
+      <button class="icon-btn" onclick="movePerson(${pi},1)" ${pi===people.length-1?'disabled':''} title="Move down">↓</button>
+      <button class="icon-btn del" onclick="removePerson(${pi})" title="Remove">×</button>
+    </div>
   </div>`).join('');
 }
-
 function renderClientsList(){
   if(!clients.length)return`<div class="no-scope" style="padding:6px 0 10px">No clients yet</div>`;
   return clients.map((c,ci)=>`<div class="manage-item">
-    <div class="manage-item-left"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal400);display:inline-block;flex-shrink:0"></span><span style="font-size:12px;font-weight:500">${c}</span></div>
-    <button class="del-item" onclick="removeClient(${ci})" title="Remove">×</button>
+    <div class="manage-item-left"><span style="width:8px;height:8px;border-radius:50%;background:var(--red400);display:inline-block;flex-shrink:0"></span><span class="manage-item-name">${c}</span></div>
+    <div class="manage-item-actions">
+      <button class="icon-btn" onclick="moveClient(${ci},-1)" ${ci===0?'disabled':''} title="Move up">↑</button>
+      <button class="icon-btn" onclick="moveClient(${ci},1)" ${ci===clients.length-1?'disabled':''} title="Move down">↓</button>
+      <button class="icon-btn del" onclick="removeClient(${ci})" title="Remove">×</button>
+    </div>
+  </div>`).join('');
+}
+function renderServicesList(){
+  if(!services.length)return`<div class="no-scope" style="padding:6px 0 10px">No services yet</div>`;
+  return services.map((s,i)=>`<div class="manage-item">
+    <div class="manage-item-left"><span style="width:8px;height:8px;border-radius:2px;background:var(--red400);display:inline-block;flex-shrink:0"></span><span class="manage-item-name">${s}</span></div>
+    <div class="manage-item-actions">
+      <button class="icon-btn" onclick="moveService(${i},-1)" ${i===0?'disabled':''} title="Move up">↑</button>
+      <button class="icon-btn" onclick="moveService(${i},1)" ${i===services.length-1?'disabled':''} title="Move down">↓</button>
+      <button class="icon-btn del" onclick="removeService(${i})" title="Remove">×</button>
+    </div>
   </div>`).join('');
 }
 
 function addPerson(){
-  const nameEl=document.getElementById('new-person-name');
-  const roleEl=document.getElementById('new-person-role');
-  const name=nameEl.value.trim();
-  const role=roleEl.value.trim();
-  if(!name)return;
-  people.push({name,role:role||'Team member'});
+  const n=document.getElementById('np-name').value.trim();
+  const r=document.getElementById('np-role').value.trim();if(!n)return;
+  people.push({name:n,role:r||'Team member'});
   cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
-  nameEl.value='';roleEl.value='';
+  document.getElementById('np-name').value='';document.getElementById('np-role').value='';
   document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.querySelector('.manage-section h4').textContent=`Team members (${people.length})`;
+  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
   scheduleSave();
 }
-
 function removePerson(pi){
-  if(!confirm(`Remove ${people[pi].name} from the team? Their assignments will be deleted.`))return;
-  people.splice(pi,1);
-  cellState.splice(pi,1);
-  document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.querySelector('.manage-section h4').textContent=`Team members (${people.length})`;
-  scheduleSave();
-}
-
-function addClient(){
-  const inp=document.getElementById('new-client');
-  const val=inp.value.trim();if(!val)return;
-  clients.push(val);
-  scopeState.push([]);
-  cellState.forEach(row=>row.push({primary:'',items:[],owner:false}));
-  inp.value='';
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.querySelectorAll('.manage-section h4')[1].textContent=`Clients (${clients.length})`;
-  scheduleSave();
-}
-
-function removeClient(ci){
-  if(!confirm(`Remove "${clients[ci]}"? All assignments for this client will be deleted.`))return;
-  clients.splice(ci,1);
-  scopeState.splice(ci,1);
-  cellState.forEach(row=>row.splice(ci,1));
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.querySelectorAll('.manage-section h4')[1].textContent=`Clients (${clients.length})`;
-  scheduleSave();
-}
-
-function confirmDeletePerson(pi,e){
-  e.stopPropagation();
-  if(!confirm(`Remove ${people[pi].name}? Their assignments will be deleted.`))return;
+  if(!confirm(`Remove ${people[pi].name}?`))return;
   people.splice(pi,1);cellState.splice(pi,1);
-  scheduleSave();buildTable();
+  document.getElementById('people-list').innerHTML=renderPeopleList();
+  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
+  scheduleSave();
 }
-
-function confirmDeleteClient(ci,e){
-  e.stopPropagation();
-  if(!confirm(`Remove "${clients[ci]}"? All assignments for this client will be deleted.`))return;
+function addClient(){
+  const v=document.getElementById('nc').value.trim();if(!v)return;
+  clients.push(v);scopeState.push([]);
+  cellState.forEach(row=>row.push({primary:'',items:[],owner:false}));
+  document.getElementById('nc').value='';
+  document.getElementById('clients-list').innerHTML=renderClientsList();
+  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
+  scheduleSave();
+}
+function removeClient(ci){
+  if(!confirm(`Remove "${clients[ci]}"?`))return;
   clients.splice(ci,1);scopeState.splice(ci,1);
   cellState.forEach(row=>row.splice(ci,1));
-  scheduleSave();buildTable();
+  document.getElementById('clients-list').innerHTML=renderClientsList();
+  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
+  scheduleSave();
 }
-
+function addService(){
+  const v=document.getElementById('ns').value.trim();if(!v)return;
+  if(!services.includes(v)){
+    services.push(v);document.getElementById('ns').value='';
+    document.getElementById('services-list').innerHTML=renderServicesList();
+    document.getElementById('mh-services').textContent=`Service library (${services.length})`;
+    scheduleSave();
+  }else document.getElementById('ns').value='';
+}
+function removeService(i){
+  services.splice(i,1);
+  document.getElementById('services-list').innerHTML=renderServicesList();
+  document.getElementById('mh-services').textContent=`Service library (${services.length})`;
+  scheduleSave();
+}
+function confirmDeletePerson(pi,e){
+  e.stopPropagation();if(!confirm(`Remove ${people[pi].name}?`))return;
+  people.splice(pi,1);cellState.splice(pi,1);scheduleSave();buildTable();
+}
+function confirmDeleteClient(ci,e){
+  e.stopPropagation();if(!confirm(`Remove "${clients[ci]}"?`))return;
+  clients.splice(ci,1);scopeState.splice(ci,1);
+  cellState.forEach(row=>row.splice(ci,1));scheduleSave();buildTable();
+}
 function closeMW(e){
   if(!e||e.target.classList.contains('modal-bg'))
     document.getElementById('modal-wrap').innerHTML='';
