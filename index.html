@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roles & Responsibilities — Gross Labs</title>
+<title>Roles & Responsibilities — SLS</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#f0efe9;
+  --bg:#fff;--bg2:#f7f7f5;--bg3:#f0efe9;
   --text:#1a1a18;--text2:#6b6a64;--text3:#9c9a92;
-  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
+  --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.16);
   --red50:#FFF0F0;--red400:#E0191F;--red600:#B81318;--red800:#8A0E12;
   --purple50:#EEEDFE;--purple800:#3C3489;
   --blue50:#E6F1FB;--blue800:#0C447C;
@@ -18,135 +18,148 @@
   --pink50:#FBEAF0;--pink800:#72243E;
   --green50:#EAF3DE;--green800:#27500A;
   --teal50:#E1F5EE;--teal800:#085041;
-  --radius:8px;--radius-lg:12px;
+  --indigo50:#EEF2FF;--indigo800:#3730A3;
+  --rose50:#FFF1F2;--rose800:#9F1239;
+  --radius:7px;--radius-lg:11px;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
-header{background:var(--bg);border-bottom:0.5px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;gap:12px;flex-wrap:wrap}
-header h1{font-size:14px;font-weight:500}
-.header-right{display:flex;align-items:center;gap:10px}
-.save-status{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px}
-.save-dot{width:7px;height:7px;border-radius:50%;background:var(--text3);transition:background .3s;flex-shrink:0}
-.save-dot.saving{background:#f59e0b}
-.save-dot.saved{background:var(--red400)}
-.save-dot.error{background:#ef4444}
-.btn-manage{font-size:11px;padding:5px 12px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2);transition:background .12s;white-space:nowrap}
-.btn-manage:hover{background:var(--bg2)}
-.container{padding:16px 20px}
-.below-table{margin-top:14px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.hint{font-size:11px;color:var(--text3);line-height:1.7;max-width:600px}
-.hint strong{color:var(--text2);font-weight:500}
-.matrix-scroll{overflow-x:auto;border-radius:var(--radius-lg);border:0.5px solid var(--border);background:var(--bg)}
-table.mx{border-collapse:collapse;font-size:12px;width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh;font-size:13px}
+header{background:var(--bg);border-bottom:0.5px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;gap:12px}
+header h1{font-size:13px;font-weight:500}
+.header-right{display:flex;align-items:center;gap:8px}
+.save-status{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px}
+.save-dot{width:6px;height:6px;border-radius:50%;background:var(--text3);transition:background .3s;flex-shrink:0}
+.save-dot.saving{background:#f59e0b}.save-dot.saved{background:var(--red400)}.save-dot.error{background:#ef4444}
+.btn{font-size:11px;padding:4px 10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text2);transition:background .12s;white-space:nowrap}
+.btn:hover{background:var(--bg2)}
+.btn.primary{background:var(--red400);color:#fff;border-color:var(--red400)}
+.btn.primary:hover{background:var(--red600)}
+.container{padding:14px 20px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;margin-top:20px}
+.section-header:first-of-type{margin-top:0}
+.section-title{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text3)}
+.section-actions{display:flex;gap:6px}
+.matrix-scroll{overflow-x:auto;border-radius:var(--radius-lg);border:0.5px solid var(--border);background:var(--bg);margin-bottom:6px}
+table.mx{border-collapse:collapse;font-size:11px;width:100%}
 table.mx th,table.mx td{border:0.5px solid var(--border);vertical-align:top}
-table.mx thead th{background:var(--bg2);font-weight:500;color:var(--text);font-size:11px;padding:10px 12px;text-align:center}
-table.mx thead th.h-left{text-align:left;min-width:145px}
-table.mx thead th.h-client{min-width:115px;max-width:140px;line-height:1.4;white-space:normal;font-size:11px;position:relative;cursor:pointer}
-table.mx thead th.h-client:hover{background:var(--bg3)}
-.col-del{display:none;position:absolute;top:4px;right:4px;background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;line-height:1;padding:1px 3px;border-radius:4px}
-table.mx thead th.h-client:hover .col-del{display:block}
+table.mx thead th{background:var(--bg2);font-weight:500;color:var(--text);font-size:10px;padding:7px 10px;text-align:center}
+table.mx thead th.h-left{text-align:left;min-width:130px;width:130px}
+table.mx thead th.h-col{min-width:105px;max-width:130px;line-height:1.3;white-space:normal;font-size:10px;position:relative}
+table.mx thead th.h-col .col-name{cursor:pointer;display:block}
+table.mx thead th.h-col .col-name:hover{text-decoration:underline;text-decoration-style:dotted}
+.col-del{display:none;position:absolute;top:3px;right:3px;background:none;border:none;cursor:pointer;color:var(--text3);font-size:11px;padding:1px 2px;border-radius:3px;line-height:1}
+table.mx thead th.h-col:hover .col-del{display:block}
 .col-del:hover{color:#c0392b}
-tr.scope-row td{background:var(--red50);border-bottom:2px solid var(--red400)}
-tr.scope-row td.scope-label{padding:10px 12px;font-size:11px;font-weight:500;color:var(--red800);white-space:nowrap;vertical-align:middle}
-td.scope-cell{padding:7px 10px;vertical-align:top;cursor:pointer}
-td.scope-cell:hover{background:#F5C4C444}
-.scope-items{display:flex;flex-wrap:wrap;gap:4px;min-height:26px;align-items:flex-start}
-.scope-tag{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;white-space:nowrap;transition:all .2s}
+tr.scope-row td{background:var(--red50);border-bottom:1.5px solid var(--red400)}
+tr.scope-row td.scope-label{padding:7px 10px;font-size:10px;font-weight:500;color:var(--red800);white-space:nowrap;vertical-align:middle}
+td.scope-cell{padding:5px 7px;vertical-align:top;cursor:pointer}
+td.scope-cell:hover{background:#F5C4C433}
+.scope-items{display:flex;flex-wrap:wrap;gap:3px;min-height:20px;align-items:flex-start}
+.scope-tag{font-size:9px;padding:2px 6px;border-radius:20px;font-weight:500;white-space:nowrap}
 .scope-tag.unassigned{background:var(--red400);color:#fff}
 .scope-tag.assigned{background:var(--bg3);color:var(--text3);border:0.5px solid var(--border2)}
-.scope-plus{font-size:15px;line-height:1;width:22px;height:22px;border-radius:50%;border:0.5px dashed var(--red400);color:var(--red400);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;transition:background .12s}
+.scope-plus{font-size:13px;width:18px;height:18px;border-radius:50%;border:0.5px dashed var(--red400);color:var(--red400);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;line-height:1}
 .scope-plus:hover{background:var(--red50)}
-table.mx td.td-person{padding:9px 12px;white-space:nowrap;background:var(--bg);position:relative}
+table.mx td.td-person{padding:7px 10px;white-space:nowrap;background:var(--bg);position:relative;min-width:130px}
 table.mx tr.person-row:nth-child(even) td{background:var(--bg2)}
 table.mx tr.person-row:nth-child(even) td.td-person{background:var(--bg2)}
-.row-del{display:none;position:absolute;top:50%;right:6px;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:2px 4px;border-radius:4px}
+.row-del{display:none;position:absolute;top:50%;right:4px;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text3);font-size:11px;padding:1px 3px;border-radius:3px}
 table.mx tr.person-row:hover .row-del{display:block}
 .row-del:hover{color:#c0392b}
-table.mx td.cell{padding:7px 10px;min-width:115px;cursor:pointer;transition:background .12s}
+table.mx td.cell{padding:5px 7px;min-width:105px;cursor:pointer;transition:background .1s}
 table.mx td.cell:hover{background:rgba(0,0,0,0.03)}
 table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
-.av{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-size:9px;font-weight:600;margin-right:8px;vertical-align:middle;flex-shrink:0}
+.av{display:inline-flex;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-size:8px;font-weight:600;margin-right:7px;vertical-align:middle;flex-shrink:0}
 .av0{background:#FFF0F0;color:#8A0E12}.av1{background:var(--blue50);color:var(--blue800)}
 .av2{background:var(--amber50);color:var(--amber800)}.av3{background:var(--purple50);color:var(--purple800)}
 .av4{background:var(--coral50);color:var(--coral800)}.av5{background:var(--pink50);color:var(--pink800)}
 .av6{background:var(--green50);color:var(--green800)}.av7{background:var(--teal50);color:var(--teal800)}
 .av8{background:#FEF3C7;color:#92400E}.av9{background:#EDE9FE;color:#4C1D95}
-.av10{background:#FCE7F3;color:#831843}.av11{background:#ECFDF5;color:#064E3B}
-.person-name{font-weight:500;color:var(--text);font-size:12px}
-.person-role{font-size:10px;color:var(--text3);margin-top:1px}
-.owner-bar{font-size:10px;font-weight:500;color:var(--red800);display:flex;align-items:center;gap:4px;margin-bottom:4px}
-.owner-dot{width:6px;height:6px;border-radius:50%;background:var(--red400);flex-shrink:0}
-.cell-primary{font-size:11px;font-weight:500;color:var(--text);margin-bottom:4px}
-.cell-tags{display:flex;flex-wrap:wrap;gap:3px}
-.scope-ref{font-size:10px;padding:2px 6px;border-radius:20px;background:var(--purple50);color:var(--purple800);font-weight:500;white-space:nowrap}
-.empty-cell{color:var(--text3);font-size:11px;font-style:italic}
-.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--text2);align-items:center}
-.legend-item{display:flex;align-items:center;gap:5px}
-.legend-owner{width:22px;height:3px;background:var(--red400);border-radius:2px}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.22);z-index:200;display:flex;align-items:center;justify-content:center}
-.modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:22px;width:380px;max-width:96vw;max-height:90vh;overflow-y:auto}
-.modal h3{font-size:14px;font-weight:500;margin:0 0 3px}
-.modal p.sub{font-size:11px;color:var(--text3);margin:0 0 14px}
-.modal label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;margin-top:12px}
+.av10{background:var(--indigo50);color:var(--indigo800)}.av11{background:var(--rose50);color:var(--rose800)}
+.person-name{font-weight:500;color:var(--text);font-size:11px}
+.person-role{font-size:9px;color:var(--text3);margin-top:1px}
+.owner-bar{font-size:9px;font-weight:500;color:var(--red800);display:flex;align-items:center;gap:3px;margin-bottom:3px}
+.owner-dot{width:5px;height:5px;border-radius:50%;background:var(--red400);flex-shrink:0}
+.cell-primary{font-size:10px;font-weight:500;color:var(--text);margin-bottom:3px}
+.cell-tags{display:flex;flex-wrap:wrap;gap:2px}
+.scope-ref{font-size:9px;padding:1px 5px;border-radius:20px;background:var(--purple50);color:var(--purple800);font-weight:500;white-space:nowrap}
+.empty-cell{color:var(--text3);font-size:10px}
+.below-table{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.hint{font-size:10px;color:var(--text3);line-height:1.7}
+.hint strong{color:var(--text2);font-weight:500}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:10px;color:var(--text2);align-items:center;margin-top:4px}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-owner{width:18px;height:2.5px;background:var(--red400);border-radius:2px}
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.2);z-index:200;display:flex;align-items:center;justify-content:center}
+.modal{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:18px;width:360px;max-width:96vw;max-height:88vh;overflow-y:auto}
+.modal.wide{width:430px}
+.modal h3{font-size:13px;font-weight:500;margin:0 0 2px}
+.modal p.sub{font-size:10px;color:var(--text3);margin:0 0 12px}
+.modal label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;margin-top:10px}
 .modal label:first-of-type{margin-top:0}
-.modal input[type=text]{width:100%;font-size:12px;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
-.modal input[type=text]:focus{border-color:var(--red400)}
-.modal input[type=text].mb{margin-bottom:10px}
-.scope-checkboxes{display:flex;flex-direction:column;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;max-height:210px;overflow-y:auto;margin-bottom:10px}
-.scope-check-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:0.5px solid var(--border);cursor:pointer;font-size:12px;color:var(--text);transition:background .1s}
-.scope-check-row:last-child{border-bottom:none}
-.scope-check-row:hover{background:var(--bg2)}
-.scope-check-row.checked{background:var(--red50)}
-.scope-check-row input[type=checkbox]{accent-color:var(--red400);width:14px;height:14px;flex-shrink:0;cursor:pointer}
-.scope-check-row .src-badge{font-size:10px;color:var(--text3);font-style:italic;margin-left:auto}
-.custom-divider{font-size:11px;color:var(--text3);margin:10px 0 8px;display:flex;align-items:center;gap:8px}
+.fi{width:100%;font-size:11px;padding:6px 8px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
+.fi:focus{border-color:var(--red400)}
+.fi.mb{margin-bottom:8px}
+.scope-checkboxes{display:flex;flex-direction:column;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;max-height:185px;overflow-y:auto;margin-bottom:8px}
+.sc-row{display:flex;align-items:center;gap:7px;padding:5px 9px;border-bottom:0.5px solid var(--border);font-size:11px;color:var(--text);cursor:pointer;transition:background .1s}
+.sc-row:last-child{border-bottom:none}
+.sc-row:hover{background:var(--bg2)}
+.sc-row.checked{background:var(--red50)}
+.sc-row input[type=checkbox]{accent-color:var(--red400);width:12px;height:12px;flex-shrink:0;cursor:pointer}
+.sc-row .src-badge{font-size:9px;color:var(--text3);font-style:italic;margin-left:auto;flex-shrink:0}
+.custom-divider{font-size:10px;color:var(--text3);margin:8px 0 6px;display:flex;align-items:center;gap:6px}
 .custom-divider::before,.custom-divider::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.scope-pick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;min-height:28px;margin-top:6px}
-.sp-tag{font-size:11px;padding:4px 10px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;transition:all .12s}
+.scope-pick{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;min-height:24px;margin-top:5px}
+.sp-tag{font-size:10px;padding:3px 8px;border-radius:20px;border:0.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);font-family:inherit;transition:all .1s}
 .sp-tag:hover{background:var(--bg2)}
 .sp-tag.on{background:var(--red50);color:var(--red800);border-color:var(--red400)}
-.no-scope{font-size:11px;color:var(--text3);font-style:italic}
-.owner-toggle{display:flex;align-items:center;gap:8px;margin-bottom:16px;margin-top:12px;font-size:12px;color:var(--text2);cursor:pointer}
-.owner-toggle input{accent-color:var(--red400);width:14px;height:14px}
-.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
-.modal-btns button{font-size:12px;padding:7px 16px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text);transition:background .12s}
+.no-scope{font-size:10px;color:var(--text3);font-style:italic}
+.owner-toggle{display:flex;align-items:center;gap:7px;margin-bottom:14px;margin-top:10px;font-size:11px;color:var(--text2);cursor:pointer}
+.owner-toggle input{accent-color:var(--red400);width:12px;height:12px}
+.modal-btns{display:flex;gap:6px;justify-content:flex-end;margin-top:14px}
+.modal-btns button{font-size:11px;padding:5px 13px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;cursor:pointer;font-family:inherit;color:var(--text);transition:background .1s}
 .modal-btns button:hover{background:var(--bg2)}
-.modal-btns button.primary{background:var(--red400);color:white;border-color:var(--red400)}
+.modal-btns button.primary{background:var(--red400);color:#fff;border-color:var(--red400)}
 .modal-btns button.primary:hover{background:var(--red600)}
 .btn-clear{color:#c0392b!important}
-.manage-section{margin-bottom:18px}
-.manage-section h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
-.manage-list{margin-bottom:8px}
-.manage-item{display:flex;align-items:stretch;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:5px;background:var(--bg2);overflow:hidden}
-.manage-item-body{flex:1;min-width:0;padding:7px 10px;cursor:pointer;transition:background .12s}
-.manage-item-body:hover{background:var(--red50)}
-.manage-item-body.editing{background:var(--bg);cursor:default;padding:5px 8px}
-.manage-item-name{font-weight:500;color:var(--text);font-size:12px}
-.manage-item-role{font-size:10px;color:var(--text3);margin-top:1px}
-.manage-item-hint{font-size:10px;color:var(--text3);margin-top:2px;font-style:italic}
-.edit-fields{display:flex;flex-direction:column;gap:4px}
-.edit-field{font-size:12px;padding:5px 8px;border:0.5px solid var(--red400);border-radius:6px;outline:none;font-family:inherit;background:var(--bg);color:var(--text);width:100%}
-.manage-item-actions{display:flex;align-items:center;gap:2px;padding:0 6px;flex-shrink:0;border-left:0.5px solid var(--border)}
-.icon-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:3px 5px;border-radius:4px;line-height:1;font-family:inherit}
-.icon-btn:hover{background:var(--bg3);color:var(--text)}
-.icon-btn.del:hover{color:#c0392b}
-.icon-btn.save-edit{color:var(--red400);font-weight:600}
-.icon-btn.save-edit:hover{color:var(--red600);background:var(--red50)}
-.icon-btn:disabled{opacity:0.25;cursor:default}
-.icon-btn:disabled:hover{background:none;color:var(--text3)}
-.add-row{display:flex;gap:8px;margin-top:4px}
-.add-row input{flex:1;font-size:12px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
+/* Manage */
+.manage-section{margin-bottom:14px}
+.manage-section h4{font-size:11px;font-weight:600;color:var(--text);margin-bottom:6px;padding-bottom:5px;border-bottom:0.5px solid var(--border)}
+.manage-list{margin-bottom:6px;max-height:150px;overflow-y:auto}
+.manage-item{display:flex;align-items:stretch;border:0.5px solid var(--border);border-radius:var(--radius);margin-bottom:3px;background:var(--bg2);overflow:hidden}
+.mib{flex:1;min-width:0;padding:5px 8px;cursor:pointer;transition:background .1s}
+.mib:hover{background:var(--red50)}
+.mib.editing{background:var(--bg);cursor:default;padding:4px 6px}
+.mi-name{font-weight:500;color:var(--text);font-size:11px}
+.mi-role{font-size:9px;color:var(--text3);margin-top:1px}
+.mi-hint{font-size:9px;color:var(--text3);margin-top:1px;font-style:italic}
+.edit-fields{display:flex;flex-direction:column;gap:3px}
+.ef{font-size:11px;padding:4px 6px;border:0.5px solid var(--red400);border-radius:5px;outline:none;font-family:inherit;background:var(--bg);color:var(--text);width:100%}
+.mia{display:flex;align-items:center;padding:0 4px;flex-shrink:0;border-left:0.5px solid var(--border);gap:1px}
+.ib{background:none;border:none;cursor:pointer;color:var(--text3);font-size:11px;padding:2px 4px;border-radius:3px;line-height:1;font-family:inherit}
+.ib:hover{background:var(--bg3);color:var(--text)}
+.ib.del:hover{color:#c0392b}
+.ib:disabled{opacity:.2;cursor:default}
+.ib:disabled:hover{background:none;color:var(--text3)}
+.add-row{display:flex;gap:6px;margin-top:3px}
+.add-row input{flex:1;font-size:11px;padding:5px 8px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)}
 .add-row input:focus{border-color:var(--red400)}
-.add-row button{font-size:12px;padding:7px 14px;border-radius:var(--radius);border:none;background:var(--red400);color:white;cursor:pointer;font-family:inherit;white-space:nowrap}
+.add-row button{font-size:11px;padding:5px 11px;border-radius:var(--radius);border:none;background:var(--red400);color:#fff;cursor:pointer;font-family:inherit}
 .add-row button:hover{background:var(--red600)}
-.loading{display:flex;align-items:center;justify-content:center;padding:60px 20px;font-size:13px;color:var(--text3)}
-.divider{height:0.5px;background:var(--border);margin:14px 0}
+.loading{display:flex;align-items:center;justify-content:center;padding:40px 20px;font-size:12px;color:var(--text3)}
+.divider{height:0.5px;background:var(--border);margin:12px 0}
+.manage-tabs{display:flex;gap:0;margin-bottom:14px;border:0.5px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+.manage-tab{flex:1;font-size:11px;padding:6px 8px;border:none;background:transparent;cursor:pointer;font-family:inherit;color:var(--text2);transition:background .1s;text-align:center}
+.manage-tab:hover{background:var(--bg2)}
+.manage-tab.active{background:var(--red400);color:#fff}
+.tab-content{display:none}.tab-content.active{display:block}
 </style>
 </head>
 <body>
 <header>
-  <h1>Roles &amp; Responsibilities — Gross Labs</h1>
+  <h1>Roles & Responsibilities — SLS</h1>
   <div class="header-right">
-    <button class="btn-manage" onclick="openManage()">⚙ Manage</button>
+    <button class="btn" onclick="openManage()">⚙ Manage</button>
     <div class="save-status">
       <div class="save-dot" id="save-dot"></div>
       <span id="save-label">Loading...</span>
@@ -154,415 +167,632 @@ table.mx td.cell.is-owner{border-top:2px solid var(--red400)}
   </div>
 </header>
 <div class="container">
-  <div id="table-wrap"><div class="loading">Loading your data...</div></div>
+  <div class="section-header">
+    <span class="section-title">Client Work</span>
+    <div class="section-actions">
+      <button class="btn" onclick="openManage('ct')">+ Client</button>
+      <button class="btn" onclick="openManage('cp')">+ Person</button>
+    </div>
+  </div>
+  <div id="c-wrap"><div class="loading">Loading...</div></div>
   <div class="below-table">
     <div>
-      <div class="hint" style="margin-bottom:8px">
-        <strong>Red tags</strong> = not yet assigned &nbsp;·&nbsp; <strong>Gray tags</strong> = already assigned &nbsp;·&nbsp;
-        <strong>+</strong> on any scope cell to edit scope &nbsp;·&nbsp; <strong>Click any person's cell</strong> to assign items &amp; mark owner
-      </div>
+      <div class="hint"><strong>Red tags</strong> = unassigned &nbsp;·&nbsp; <strong>Gray</strong> = assigned &nbsp;·&nbsp; <strong>+</strong> to edit scope &nbsp;·&nbsp; Click any cell to assign</div>
       <div class="legend">
         <div class="legend-item"><div class="legend-owner"></div> Account owner</div>
-        <div class="legend-item"><span class="scope-tag unassigned" style="font-size:10px;padding:2px 8px">Strategy</span> Unassigned</div>
-        <div class="legend-item"><span class="scope-tag assigned" style="font-size:10px;padding:2px 8px">Editing</span> Assigned</div>
-        <div class="legend-item"><span class="scope-ref">Strategy</span> Person's task</div>
+        <div class="legend-item"><span class="scope-tag unassigned" style="font-size:9px;padding:1px 6px">Strategy</span> Unassigned</div>
+        <div class="legend-item"><span class="scope-tag assigned" style="font-size:9px;padding:1px 6px">QC</span> Assigned</div>
       </div>
     </div>
-    <button class="btn-manage" onclick="openManage()" style="align-self:flex-start;margin-top:2px">⚙ Manage team, clients &amp; services</button>
+  </div>
+
+  <div class="section-header" style="margin-top:24px">
+    <span class="section-title">Internal & Ops</span>
+    <div class="section-actions">
+      <button class="btn" onclick="openManage('ot')">+ Function</button>
+      <button class="btn" onclick="openManage('op')">+ Person</button>
+    </div>
+  </div>
+  <div id="o-wrap"><div class="loading">Loading...</div></div>
+  <div class="below-table">
+    <div class="hint"><strong>Internal functions</strong> not tied to any client — Recruiting, Ops, Sales, etc.</div>
   </div>
 </div>
 <div id="modal-wrap"></div>
 <script>
-const SUPA_URL='https://ayheqtrgyfqsyvexvztn.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5aGVxdHJneWZxc3l2ZXh2enRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Mzc3OTYsImV4cCI6MjA5NDQxMzc5Nn0.yXaZ7zm_aSHZS3fU_ixBTuUzLMjCizMEhyiSpNYc6p0';
-const DB_TABLE='RolesMatrixData';
-const AV_COLORS=['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9','av10','av11'];
-const DEFAULT_PEOPLE=[
-  {name:'Caleb',role:'CEO'},{name:'TJ',role:'Operations'},
-  {name:'Eli',role:'QC & creative strategy'},{name:'Prajj',role:'QC, creative strategy & ops'},
-  {name:'Mazhar',role:'Editor'},{name:'Aloum',role:'Editor'},
-  {name:'Lindsey',role:'Editor & creative ideation'},{name:'Erie',role:'Graphic designer'},
-];
-const DEFAULT_CLIENTS=['Find Your Grind','Nick Gross','Gross Labs','LAGC','Josh Suggs','StreetTalk','Liteyear Golf','Lights On Podcast'];
-const DEFAULT_SERVICES=['Strategy','Editing','Graphics','Sprint planning','Social media','Content creation','QC','Operations','Creative ideation','Paid media'];
+const SURL='https://ayheqtrgyfqsyvexvztn.supabase.co';
+const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5aGVxdHJneWZxc3l2ZXh2enRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Mzc3OTYsImV4cCI6MjA5NDQxMzc5Nn0.yXaZ7zm_aSHZS3fU_ixBTuUzLMjCizMEhyiSpNYc6p0';
+const DB='RolesMatrixData';
+const AVC=['av0','av1','av2','av3','av4','av5','av6','av7','av8','av9','av10','av11'];
 
-let people=DEFAULT_PEOPLE.map(p=>({...p}));
-let clients=[...DEFAULT_CLIENTS];
-let services=[...DEFAULT_SERVICES];
-let scopeState=clients.map(()=>[]);
-let cellState=people.map(()=>clients.map(()=>({primary:'',items:[],owner:false})));
+// Separate people for each section
+let cPeople=[
+  {name:'Caleb',role:'CEO'},{name:'TJ',role:'Operations Manager'},
+  {name:'Eli',role:'Creative Producer'},{name:'Prajj',role:'Post Production Lead'},
+  {name:'Mazhar',role:'Editor'},{name:'Aloum',role:'Editor'},
+  {name:'Lindsey',role:'Creative Strategist'},{name:'Erie',role:'Graphic Designer'},
+  {name:'Joselyn',role:'Social Media Manager'},{name:'Abhishek',role:'Editor'},
+];
+let oPeople=[
+  {name:'Caleb',role:'CEO'},{name:'TJ',role:'Operations Manager'},
+  {name:'Eli',role:'Creative Producer'},{name:'Prajj',role:'Post Production Lead'},
+];
+let clients=['Find Your Grind','Nick Gross','Gross Labs','LAGC','Josh Suggs','StreetTalk','Liteyear Golf','Lights On Podcast','FancySprinkles','Harrison'];
+let opsFns=['Recruiting','Sales & Marketing','Operations / ClickUp','Weekly Cadence','Finance','Culture & Standards'];
+let services=['Strategy','Editing','Graphics','Sprint planning','Social media','Content creation','QC','Client agenda','Operations','Creative ideation','Paid media','Captions','Posting calendar','Footage review','Brief writing'];
+
+let cScope=clients.map(()=>[]);
+let oScope=opsFns.map(()=>[]);
+let cCells=cPeople.map(()=>clients.map(()=>ef()));
+let oCells=oPeople.map(()=>opsFns.map(()=>ef()));
 let saveTimer=null;
 
-const hdrs={'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'};
-function setStatus(s,l){document.getElementById('save-dot').className='save-dot '+s;document.getElementById('save-label').textContent=l;}
-async function dbGet(k){const r=await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}?key=eq.${encodeURIComponent(k)}&select=value`,{headers:hdrs});const d=await r.json();return(d&&d[0])?JSON.parse(d[0].value):null;}
-async function dbSet(k,v){await fetch(`${SUPA_URL}/rest/v1/${DB_TABLE}`,{method:'POST',headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},body:JSON.stringify({key:k,value:JSON.stringify(v)})});}
+function ef(){return{primary:'',items:[],owner:false};}
+const hdrs={'apikey':SKEY,'Authorization':'Bearer '+SKEY,'Content-Type':'application/json'};
+
+function setStatus(s,l){
+  document.getElementById('save-dot').className='save-dot '+s;
+  document.getElementById('save-label').textContent=l;
+}
+async function dbGet(k){
+  try{
+    const r=await fetch(`${SURL}/rest/v1/${DB}?key=eq.${encodeURIComponent(k)}&select=value`,{headers:hdrs});
+    const d=await r.json();
+    return(d&&d[0])?JSON.parse(d[0].value):null;
+  }catch{return null;}
+}
+async function dbSet(k,v){
+  await fetch(`${SURL}/rest/v1/${DB}`,{
+    method:'POST',
+    headers:{...hdrs,'Prefer':'resolution=merge-duplicates'},
+    body:JSON.stringify({key:k,value:JSON.stringify(v)})
+  });
+}
 async function loadData(){
   try{
-    const [p,cl,sv,sc,cs]=await Promise.all([dbGet('people'),dbGet('clients'),dbGet('services'),dbGet('scopeState'),dbGet('cellState')]);
-    if(p)people=p;if(cl)clients=cl;if(sv)services=sv;if(sc)scopeState=sc;if(cs)cellState=cs;
-    while(scopeState.length<clients.length)scopeState.push([]);
-    while(cellState.length<people.length)cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
-    cellState.forEach(row=>{while(row.length<clients.length)row.push({primary:'',items:[],owner:false});});
+    const [cp,op,cl,of,sv,cs,os,cc,oc]=await Promise.all([
+      dbGet('cPeople'),dbGet('oPeople'),dbGet('clients'),dbGet('opsFns'),dbGet('services'),
+      dbGet('cScope'),dbGet('oScope'),dbGet('cCells'),dbGet('oCells')
+    ]);
+    if(cp)cPeople=cp; if(op)oPeople=op;
+    if(cl)clients=cl; if(of)opsFns=of; if(sv)services=sv;
+    if(cs)cScope=cs; if(os)oScope=os;
+    if(cc)cCells=cc; if(oc)oCells=oc;
+    fixDims();
     setStatus('saved','All changes saved');
   }catch(e){setStatus('error','Could not connect');}
 }
-function scheduleSave(){
-  setStatus('saving','Saving...');clearTimeout(saveTimer);
+function fixDims(){
+  while(cScope.length<clients.length)cScope.push([]);
+  while(oScope.length<opsFns.length)oScope.push([]);
+  while(cCells.length<cPeople.length)cCells.push(clients.map(()=>ef()));
+  while(oCells.length<oPeople.length)oCells.push(opsFns.map(()=>ef()));
+  cCells.forEach(r=>{while(r.length<clients.length)r.push(ef());});
+  oCells.forEach(r=>{while(r.length<opsFns.length)r.push(ef());});
+}
+function saveAll(){
+  setStatus('saving','Saving...');
+  clearTimeout(saveTimer);
   saveTimer=setTimeout(async()=>{
-    try{await Promise.all([dbSet('people',people),dbSet('clients',clients),dbSet('services',services),dbSet('scopeState',scopeState),dbSet('cellState',cellState)]);setStatus('saved','All changes saved');}
-    catch(e){setStatus('error','Save failed');}
+    try{
+      await Promise.all([
+        dbSet('cPeople',cPeople),dbSet('oPeople',oPeople),
+        dbSet('clients',clients),dbSet('opsFns',opsFns),dbSet('services',services),
+        dbSet('cScope',cScope),dbSet('oScope',oScope),
+        dbSet('cCells',cCells),dbSet('oCells',oCells)
+      ]);
+      setStatus('saved','All changes saved');
+    }catch(e){setStatus('error','Save failed');}
   },900);
 }
-function avClass(pi){return AV_COLORS[pi%AV_COLORS.length]}
-function initials(n){return n.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase()}
-function getAssigned(ci){const a=new Set();people.forEach((_,pi)=>{const s=cellState[pi]&&cellState[pi][ci];if(s&&s.items)s.items.forEach(i=>a.add(i));});return a;}
 
-function buildTable(){
+function avc(pi){return AVC[pi%AVC.length];}
+function ini(n){return n.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();}
+function gc(cells,pi,ci){return(cells[pi]&&cells[pi][ci])||ef();}
+function assignedSet(cells,ci){
+  const s=new Set();
+  cells.forEach(row=>{const c=row[ci];if(c&&c.items)c.items.forEach(i=>s.add(i));});
+  return s;
+}
+
+/* ===== BUILD ===== */
+function buildAll(){
+  buildMatrix('c-wrap','c',cPeople,clients,cScope,cCells);
+  buildMatrix('o-wrap','o',oPeople,opsFns,oScope,oCells);
+}
+function buildMatrix(wrapId,pfx,people,cols,scope,cells){
+  if(!cols.length||!people.length){
+    document.getElementById(wrapId).innerHTML=`<div class="loading" style="padding:20px">No data — use the buttons above to add ${pfx==='c'?'clients and people':'functions and people'}.</div>`;
+    return;
+  }
   let h='<div class="matrix-scroll"><table class="mx"><thead><tr><th class="h-left">Team member</th>';
-  clients.forEach((c,ci)=>h+=`<th class="h-client" onclick="openClientEdit(${ci},event)">${c}<button class="col-del" onclick="confirmDeleteClient(${ci},event)">×</button></th>`);
-  h+='</tr></thead><tbody><tr class="scope-row"><td class="scope-label">Client scope</td>';
-  clients.forEach((_,ci)=>h+=`<td class="scope-cell" id="sc${ci}" onclick="openScopeModal(${ci})">${scopeCellInner(ci)}</td>`);
+  cols.forEach((c,ci)=>{
+    h+=`<th class="h-col">
+      <span class="col-name" onclick="startColEdit('${pfx}',${ci},this)">${c}</span>
+      <button class="col-del" onclick="delCol('${pfx}',${ci})">×</button>
+    </th>`;
+  });
+  h+='</tr></thead><tbody>';
+  h+='<tr class="scope-row"><td class="scope-label">Scope</td>';
+  cols.forEach((_,ci)=>{
+    h+=`<td class="scope-cell" id="${pfx}sc${ci}" onclick="openScope('${pfx}',${ci})">${scopeInner(pfx,ci)}</td>`;
+  });
   h+='</tr>';
   people.forEach((p,pi)=>{
-    h+=`<tr class="person-row"><td class="td-person"><div style="display:flex;align-items:center;padding-right:18px"><span class="av ${avClass(pi)}">${initials(p.name)}</span><div><div class="person-name">${p.name}</div><div class="person-role">${p.role}</div></div></div><button class="row-del" onclick="confirmDeletePerson(${pi},event)">×</button></td>`;
-    clients.forEach((_,ci)=>h+=cellHTML(pi,ci));
+    h+=`<tr class="person-row">
+      <td class="td-person">
+        <div style="display:flex;align-items:center;padding-right:16px">
+          <span class="av ${avc(pi)}">${ini(p.name)}</span>
+          <div><div class="person-name">${p.name}</div><div class="person-role">${p.role}</div></div>
+        </div>
+        <button class="row-del" onclick="delRow('${pfx}',${pi})">×</button>
+      </td>`;
+    cols.forEach((_,ci)=>{ h+=cellHTML(pfx,cells,pi,ci); });
     h+='</tr>';
   });
   h+='</tbody></table></div>';
-  document.getElementById('table-wrap').innerHTML=h;
+  document.getElementById(wrapId).innerHTML=h;
 }
-function scopeCellInner(ci){
-  const scope=scopeState[ci]||[];const a=getAssigned(ci);
+
+function scopeInner(pfx,ci){
+  const scope=(pfx==='c'?cScope:oScope)[ci]||[];
+  const cells=pfx==='c'?cCells:oCells;
+  const a=assignedSet(cells,ci);
   const tags=scope.map(s=>`<span class="scope-tag ${a.has(s)?'assigned':'unassigned'}">${s}</span>`).join('');
-  return`<div class="scope-items">${tags}<button class="scope-plus" onclick="event.stopPropagation();openScopeModal(${ci})">+</button></div>`;
+  return`<div class="scope-items">${tags}<button class="scope-plus" onclick="event.stopPropagation();openScope('${pfx}',${ci})">+</button></div>`;
 }
-function refreshScopeCell(ci){const el=document.getElementById(`sc${ci}`);if(!el)return;el.innerHTML=scopeCellInner(ci);el.onclick=()=>openScopeModal(ci);}
-function cellHTML(pi,ci){
-  const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
+function refreshScope(pfx,ci){
+  const el=document.getElementById(`${pfx}sc${ci}`);
+  if(!el)return;
+  el.innerHTML=scopeInner(pfx,ci);
+  el.onclick=()=>openScope(pfx,ci);
+}
+function cellHTML(pfx,cells,pi,ci){
+  const s=gc(cells,pi,ci);
   let inner='';
-  if(s.owner)inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
-  if(s.primary)inner+=`<div class="cell-primary">${s.primary}</div>`;
-  if(s.items&&s.items.length)inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
-  if(!s.owner&&!s.primary&&(!s.items||!s.items.length))inner=`<span class="empty-cell">—</span>`;
-  return`<td class="cell${s.owner?' is-owner':''}" id="c${pi}_${ci}" onclick="openCellModal(${pi},${ci})">${inner}</td>`;
+  if(s.owner) inner+=`<div class="owner-bar"><span class="owner-dot"></span>Owner</div>`;
+  if(s.primary) inner+=`<div class="cell-primary">${s.primary}</div>`;
+  if(s.items&&s.items.length) inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
+  if(!s.owner&&!s.primary&&(!s.items||!s.items.length)) inner=`<span class="empty-cell">—</span>`;
+  return`<td class="cell${s.owner?' is-owner':''}" id="${pfx}cl${pi}_${ci}" onclick="openCell('${pfx}',${pi},${ci})">${inner}</td>`;
 }
-function refreshCell(pi,ci){
-  const el=document.getElementById(`c${pi}_${ci}`);if(!el)return;
-  const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
+function refreshCell(pfx,pi,ci){
+  const el=document.getElementById(`${pfx}cl${pi}_${ci}`);
+  if(!el)return;
+  const cells=pfx==='c'?cCells:oCells;
+  const s=gc(cells,pi,ci);
   el.className=`cell${s.owner?' is-owner':''}`;
   let inner='';
-  if(s.owner)inner+=`<div class="owner-bar"><span class="owner-dot"></span>Account owner</div>`;
-  if(s.primary)inner+=`<div class="cell-primary">${s.primary}</div>`;
-  if(s.items&&s.items.length)inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
-  if(!s.owner&&!s.primary&&(!s.items||!s.items.length))inner=`<span class="empty-cell">—</span>`;
-  el.innerHTML=inner;refreshScopeCell(ci);
+  if(s.owner) inner+=`<div class="owner-bar"><span class="owner-dot"></span>Owner</div>`;
+  if(s.primary) inner+=`<div class="cell-primary">${s.primary}</div>`;
+  if(s.items&&s.items.length) inner+=`<div class="cell-tags">${s.items.map(i=>`<span class="scope-ref">${i}</span>`).join('')}</div>`;
+  if(!s.owner&&!s.primary&&(!s.items||!s.items.length)) inner=`<span class="empty-cell">—</span>`;
+  el.innerHTML=inner;
+  refreshScope(pfx,ci);
 }
 
-/* ---- Inline client name edit via header click ---- */
-function openClientEdit(ci,e){
-  if(e.target.classList.contains('col-del'))return;
-  const th=e.currentTarget;
-  const cur=clients[ci];
-  th.innerHTML=`<input id="cedit_${ci}" type="text" value="${cur}" style="width:100%;font-size:11px;padding:4px 6px;border:0.5px solid var(--red400);border-radius:4px;outline:none;font-family:inherit;background:var(--bg);color:var(--text)" onblur="saveClientEdit(${ci})" onkeydown="if(event.key==='Enter')this.blur();if(event.key==='Escape'){clients[${ci}]='${cur.replace(/'/g,"\\'")}';buildTable();}">`;
-  const inp=document.getElementById(`cedit_${ci}`);
+/* ===== COLUMN INLINE EDIT ===== */
+function startColEdit(pfx,ci,span){
+  const cols=pfx==='c'?clients:opsFns;
+  const cur=cols[ci];
+  const inp=document.createElement('input');
+  inp.value=cur;
+  inp.style.cssText='width:100%;font-size:10px;padding:2px 4px;border:0.5px solid var(--red400);border-radius:3px;outline:none;font-family:inherit;background:var(--bg);color:var(--text)';
+  inp.onblur=()=>{const v=inp.value.trim();if(v)cols[ci]=v;buildAll();saveAll();};
+  inp.onkeydown=(e)=>{
+    if(e.key==='Enter'){inp.blur();}
+    if(e.key==='Escape'){cols[ci]=cur;buildAll();}
+  };
+  span.replaceWith(inp);
   inp.focus();inp.select();
 }
-function saveClientEdit(ci){
-  const inp=document.getElementById(`cedit_${ci}`);
-  if(!inp)return;
-  const val=inp.value.trim();
-  if(val)clients[ci]=val;
-  buildTable();scheduleSave();
+
+/* ===== DELETE COL / ROW ===== */
+function delCol(pfx,ci){
+  const cols=pfx==='c'?clients:opsFns;
+  if(!confirm(`Remove "${cols[ci]}"? This will delete all assignments for this column.`))return;
+  if(pfx==='c'){
+    clients.splice(ci,1);
+    cScope.splice(ci,1);
+    cCells.forEach(r=>r.splice(ci,1));
+  } else {
+    opsFns.splice(ci,1);
+    oScope.splice(ci,1);
+    oCells.forEach(r=>r.splice(ci,1));
+  }
+  saveAll();
+  buildAll();
+}
+function delRow(pfx,pi){
+  const people=pfx==='c'?cPeople:oPeople;
+  const cells=pfx==='c'?cCells:oCells;
+  if(!confirm(`Remove ${people[pi].name} from this section?`))return;
+  people.splice(pi,1);
+  cells.splice(pi,1);
+  saveAll();
+  buildAll();
 }
 
-/* ---- Scope modal ---- */
-let editScope=-1;
-function openScopeModal(ci){editScope=ci;renderScopeModal();}
+/* ===== SCOPE MODAL ===== */
+let esPfx='',esCI=-1;
+function openScope(pfx,ci){esPfx=pfx;esCI=ci;renderScopeModal();}
 function renderScopeModal(){
-  const ci=editScope;const cur=scopeState[ci]||[];
+  const cols=esPfx==='c'?clients:opsFns;
+  const scopeArr=(esPfx==='c'?cScope:oScope);
+  const cur=scopeArr[esCI]||[];
   const libRows=services.map(svc=>{
     const chk=cur.includes(svc);
-    return`<label class="scope-check-row${chk?' checked':''}" id="scrow_${svc.replace(/\W/g,'_')}">
-      <input type="checkbox" ${chk?'checked':''} onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}',this.checked)">
-      <span>${svc}</span><span class="src-badge">library</span></label>`;
+    const id='scr_'+esPfx+'_'+svc.replace(/\W/g,'_');
+    return`<label class="sc-row${chk?' checked':''}" id="${id}">
+      <input type="checkbox" ${chk?'checked':''} onchange="toggleScope('${svc.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',this.checked)">
+      <span style="flex:1">${svc}</span><span class="src-badge">lib</span>
+    </label>`;
   }).join('');
   const custom=cur.filter(s=>!services.includes(s));
-  const customRows=custom.map(svc=>`<div class="scope-check-row checked">
-    <input type="checkbox" checked onchange="toggleScopeItem('${svc.replace(/'/g,"\\'")}',this.checked)" style="accent-color:var(--red400);width:14px;height:14px;flex-shrink:0">
-    <span>${svc}</span><span class="src-badge">custom</span></div>`).join('');
-  document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()">
-    <h3>Scope — ${clients[ci]}</h3><p class="sub">Tick from your service library or add a one-off below</p>
-    <div class="scope-checkboxes">${libRows||'<div style="padding:10px 12px;font-size:11px;color:var(--text3);font-style:italic">No services yet — add them in Manage</div>'}${customRows}</div>
-    <div class="custom-divider">one-off for this client only</div>
-    <div class="add-row"><input type="text" id="new-scope-custom" placeholder="e.g. Brand audit" onkeydown="if(event.key==='Enter')addCustomScopeItem()"><button onclick="addCustomScopeItem()">Add</button></div>
-    <div class="modal-btns"><button class="primary" onclick="closeMW()">Done</button></div>
-  </div></div>`;
+  const customRows=custom.map(svc=>`<div class="sc-row checked">
+    <input type="checkbox" checked onchange="toggleScope('${svc.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}',this.checked)" style="accent-color:var(--red400);width:12px;height:12px;flex-shrink:0">
+    <span style="flex:1">${svc}</span><span class="src-badge">custom</span>
+  </div>`).join('');
+  document.getElementById('modal-wrap').innerHTML=`
+  <div class="modal-bg" onclick="closeMW(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3>Scope — ${cols[esCI]}</h3>
+      <p class="sub">Tick from library · add one-off below</p>
+      <div class="scope-checkboxes">
+        ${libRows||'<div style="padding:8px 10px;font-size:10px;color:var(--text3);font-style:italic">No services yet — add in Manage</div>'}
+        ${customRows}
+      </div>
+      <div class="custom-divider">one-off for this column only</div>
+      <div class="add-row">
+        <input class="fi" type="text" id="ns-custom" placeholder="e.g. Brand audit" onkeydown="if(event.key==='Enter')addCustomScope()">
+        <button onclick="addCustomScope()">Add</button>
+      </div>
+      <div class="modal-btns"><button class="primary" onclick="closeMW()">Done</button></div>
+    </div>
+  </div>`;
 }
-function toggleScopeItem(svc,checked){
-  if(!scopeState[editScope])scopeState[editScope]=[];
-  if(checked){if(!scopeState[editScope].includes(svc))scopeState[editScope].push(svc);document.getElementById('scrow_'+svc.replace(/\W/g,'_'))?.classList.add('checked');}
-  else{
-    scopeState[editScope]=scopeState[editScope].filter(s=>s!==svc);
-    document.getElementById('scrow_'+svc.replace(/\W/g,'_'))?.classList.remove('checked');
-    people.forEach((_,pi)=>{if(cellState[pi]&&cellState[pi][editScope]&&cellState[pi][editScope].items)cellState[pi][editScope].items=cellState[pi][editScope].items.filter(i=>i!==svc);refreshCell(pi,editScope);});
+function toggleScope(svc,checked){
+  const scopeArr=esPfx==='c'?cScope:oScope;
+  const cells=esPfx==='c'?cCells:oCells;
+  if(!scopeArr[esCI])scopeArr[esCI]=[];
+  if(checked){
+    if(!scopeArr[esCI].includes(svc))scopeArr[esCI].push(svc);
+    document.getElementById('scr_'+esPfx+'_'+svc.replace(/\W/g,'_'))?.classList.add('checked');
+  } else {
+    const idx=scopeArr[esCI].indexOf(svc);
+    if(idx>=0)scopeArr[esCI].splice(idx,1);
+    document.getElementById('scr_'+esPfx+'_'+svc.replace(/\W/g,'_'))?.classList.remove('checked');
+    cells.forEach((row,pi)=>{
+      if(row[esCI]&&row[esCI].items){
+        row[esCI].items=row[esCI].items.filter(i=>i!==svc);
+        refreshCell(esPfx,pi,esCI);
+      }
+    });
   }
-  refreshScopeCell(editScope);scheduleSave();
+  refreshScope(esPfx,esCI);
+  saveAll();
 }
-function addCustomScopeItem(){
-  const inp=document.getElementById('new-scope-custom');const val=inp.value.trim();if(!val)return;
-  if(!scopeState[editScope])scopeState[editScope]=[];
-  if(!scopeState[editScope].includes(val)){scopeState[editScope].push(val);inp.value='';refreshScopeCell(editScope);scheduleSave();renderScopeModal();}
-  else inp.value='';
+function addCustomScope(){
+  const inp=document.getElementById('ns-custom');
+  const val=inp.value.trim();
+  if(!val)return;
+  const scopeArr=esPfx==='c'?cScope:oScope;
+  if(!scopeArr[esCI])scopeArr[esCI]=[];
+  if(!scopeArr[esCI].includes(val)){
+    scopeArr[esCI].push(val);
+    inp.value='';
+    refreshScope(esPfx,esCI);
+    saveAll();
+    renderScopeModal();
+  } else inp.value='';
 }
 
-/* ---- Cell modal ---- */
-let editPi=-1,editCi=-1;
-function openCellModal(pi,ci){
-  editPi=pi;editCi=ci;
-  const s=(cellState[pi]&&cellState[pi][ci])||{primary:'',items:[],owner:false};
-  const scope=scopeState[ci]||[];
+/* ===== CELL MODAL ===== */
+let ecPfx='',ecPI=-1,ecCI=-1;
+function openCell(pfx,pi,ci){
+  ecPfx=pfx;ecPI=pi;ecCI=ci;
+  const people=pfx==='c'?cPeople:oPeople;
+  const cols=pfx==='c'?clients:opsFns;
+  const cells=pfx==='c'?cCells:oCells;
+  const scope=(pfx==='c'?cScope:oScope)[ci]||[];
+  const s=gc(cells,pi,ci);
   const picker=scope.length
-    ?scope.map(item=>`<button class="sp-tag${s.items&&s.items.includes(item)?' on':''}" id="sp_${item.replace(/\W/g,'_')}" onclick="toggleItem('${item.replace(/'/g,"\\'")}')">${item}</button>`).join('')
-    :`<span class="no-scope">Add scope items to this client first</span>`;
-  document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()">
-    <h3>${people[pi].name} × ${clients[ci]}</h3><p class="sub">${people[pi].role}</p>
-    <label>Primary role on this client</label>
-    <input type="text" id="m-primary" class="mb" placeholder="e.g. Quality control lead" value="${s.primary||''}">
-    <label>Scope items this person owns</label>
-    <div class="scope-pick">${picker}</div>
-    <label class="owner-toggle"><input type="checkbox" id="m-owner" ${s.owner?'checked':''}> Mark as account owner</label>
-    <div class="modal-btns">
-      <button class="btn-clear" onclick="clearCell()">Clear</button>
-      <button onclick="closeMW()">Cancel</button>
-      <button class="primary" onclick="saveCell()">Save</button>
+    ?scope.map(item=>`<button class="sp-tag${s.items&&s.items.includes(item)?' on':''}" id="spt_${item.replace(/\W/g,'_')}" onclick="toggleItem('${item.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${item}</button>`).join('')
+    :`<span class="no-scope">Add scope to this column first</span>`;
+  document.getElementById('modal-wrap').innerHTML=`
+  <div class="modal-bg" onclick="closeMW(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3>${people[pi].name} × ${cols[ci]}</h3>
+      <p class="sub">${people[pi].role}</p>
+      <label>Primary role</label>
+      <input type="text" id="m-primary" class="fi mb" placeholder="e.g. Quality control lead" value="${s.primary||''}">
+      <label>Scope items owned</label>
+      <div class="scope-pick">${picker}</div>
+      <label class="owner-toggle">
+        <input type="checkbox" id="m-owner" ${s.owner?'checked':''}> Mark as owner
+      </label>
+      <div class="modal-btns">
+        <button class="btn-clear" onclick="clearCell()">Clear</button>
+        <button onclick="closeMW()">Cancel</button>
+        <button class="primary" onclick="saveCell()">Save</button>
+      </div>
     </div>
-  </div></div>`;
+  </div>`;
 }
 function toggleItem(item){
-  const s=cellState[editPi][editCi];if(!s.items)s.items=[];
-  const btn=document.getElementById('sp_'+item.replace(/\W/g,'_'));
+  const cells=ecPfx==='c'?cCells:oCells;
+  if(!cells[ecPI][ecCI].items)cells[ecPI][ecCI].items=[];
+  const s=cells[ecPI][ecCI];
+  const btn=document.getElementById('spt_'+item.replace(/\W/g,'_'));
   if(s.items.includes(item)){s.items=s.items.filter(k=>k!==item);btn?.classList.remove('on');}
   else{s.items.push(item);btn?.classList.add('on');}
 }
 function saveCell(){
-  if(!cellState[editPi])cellState[editPi]=[];
-  if(!cellState[editPi][editCi])cellState[editPi][editCi]={primary:'',items:[],owner:false};
-  const s=cellState[editPi][editCi];
-  s.primary=document.getElementById('m-primary').value.trim();
-  s.owner=document.getElementById('m-owner').checked;
-  refreshCell(editPi,editCi);document.getElementById('modal-wrap').innerHTML='';scheduleSave();
+  const cells=ecPfx==='c'?cCells:oCells;
+  if(!cells[ecPI])cells[ecPI]=[];
+  if(!cells[ecPI][ecCI])cells[ecPI][ecCI]=ef();
+  cells[ecPI][ecCI].primary=document.getElementById('m-primary').value.trim();
+  cells[ecPI][ecCI].owner=document.getElementById('m-owner').checked;
+  refreshCell(ecPfx,ecPI,ecCI);
+  document.getElementById('modal-wrap').innerHTML='';
+  saveAll();
 }
 function clearCell(){
-  if(cellState[editPi]&&cellState[editPi][editCi])cellState[editPi][editCi]={primary:'',items:[],owner:false};
-  refreshCell(editPi,editCi);document.getElementById('modal-wrap').innerHTML='';scheduleSave();
+  const cells=ecPfx==='c'?cCells:oCells;
+  if(cells[ecPI]&&cells[ecPI][ecCI])cells[ecPI][ecCI]=ef();
+  refreshCell(ecPfx,ecPI,ecCI);
+  document.getElementById('modal-wrap').innerHTML='';
+  saveAll();
 }
 
-/* ---- Manage modal ---- */
-function openManage(){
-  document.getElementById('modal-wrap').innerHTML=`<div class="modal-bg" onclick="closeMW(event)"><div class="modal" onclick="event.stopPropagation()" style="width:440px">
-    <h3>Manage team, clients &amp; services</h3>
-    <p class="sub">Click any item to edit it inline. Use arrows to reorder.</p>
-    <div class="manage-section">
-      <h4 id="mh-people">Team members (${people.length})</h4>
-      <div class="manage-list" id="people-list">${renderPeopleList()}</div>
-      <div class="add-row">
-        <input type="text" id="np-name" placeholder="Name" style="flex:0.8" onkeydown="if(event.key==='Enter')document.getElementById('np-role').focus()">
-        <input type="text" id="np-role" placeholder="Role / title" onkeydown="if(event.key==='Enter')addPerson()" style="flex:1.2;font-size:12px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text)">
-        <button onclick="addPerson()">Add</button>
+/* ===== MANAGE MODAL ===== */
+let activeTab='cp';
+function openManage(tab){
+  activeTab=tab||'cp';
+  renderManage();
+}
+function renderManage(){
+  document.getElementById('modal-wrap').innerHTML=`
+  <div class="modal-bg" onclick="closeMW(event)">
+    <div class="modal wide" onclick="event.stopPropagation()">
+      <h3>Manage</h3>
+      <p class="sub">Click any item to edit · arrows to reorder · × to delete</p>
+      <div class="manage-tabs">
+        <button class="manage-tab${activeTab==='cp'?' active':''}" onclick="switchTab('cp')">Client team</button>
+        <button class="manage-tab${activeTab==='ct'?' active':''}" onclick="switchTab('ct')">Clients</button>
+        <button class="manage-tab${activeTab==='op'?' active':''}" onclick="switchTab('op')">Ops team</button>
+        <button class="manage-tab${activeTab==='ot'?' active':''}" onclick="switchTab('ot')">Ops functions</button>
+        <button class="manage-tab${activeTab==='sv'?' active':''}" onclick="switchTab('sv')">Services</button>
       </div>
+      <div id="manage-body">${renderTab(activeTab)}</div>
+      <div class="modal-btns"><button class="primary" onclick="closeMW();buildAll()">Done</button></div>
     </div>
-    <div class="divider"></div>
-    <div class="manage-section">
-      <h4 id="mh-clients">Clients (${clients.length})</h4>
-      <div class="manage-list" id="clients-list">${renderClientsList()}</div>
-      <div class="add-row"><input type="text" id="nc" placeholder="Client name" onkeydown="if(event.key==='Enter')addClient()"><button onclick="addClient()">Add</button></div>
+  </div>`;
+}
+function switchTab(t){activeTab=t;document.getElementById('manage-body').innerHTML=renderTab(t);}
+function renderTab(t){
+  if(t==='cp')return renderPeopleTab(cPeople,'cp');
+  if(t==='op')return renderPeopleTab(oPeople,'op');
+  if(t==='ct')return renderColTab(clients,'ct','Client name');
+  if(t==='ot')return renderColTab(opsFns,'ot','Function name');
+  if(t==='sv')return renderServicesTab();
+}
+function renderPeopleTab(people,pfx){
+  const list=people.length
+    ?people.map((p,pi)=>`<div class="manage-item">
+      <div class="mib" id="${pfx}_pm_${pi}" onclick="editPersonInline('${pfx}',${pi})">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="av ${avc(pi)}" style="width:20px;height:20px;font-size:8px">${ini(p.name)}</span>
+          <div><div class="mi-name">${p.name}</div><div class="mi-role">${p.role}</div></div>
+        </div>
+        <div class="mi-hint">click to edit</div>
+      </div>
+      <div class="mia">
+        <button class="ib" onclick="movePeople('${pfx}',${pi},-1)" ${pi===0?'disabled':''}>↑</button>
+        <button class="ib" onclick="movePeople('${pfx}',${pi},1)" ${pi===people.length-1?'disabled':''}>↓</button>
+        <button class="ib del" onclick="rmPersonManage('${pfx}',${pi})">×</button>
+      </div>
+    </div>`).join('')
+    :`<div style="font-size:11px;color:var(--text3);padding:6px 0 8px">No people yet</div>`;
+  const np=pfx==='cp'?'cnp':'onp';
+  const nr=pfx==='cp'?'cnr':'onr';
+  return`<div class="manage-section" style="margin-bottom:0">
+    <div class="manage-list" id="${pfx}-list">${list}</div>
+    <div class="add-row">
+      <input type="text" id="${np}" placeholder="Name" style="flex:.8" onkeydown="if(event.key==='Enter')document.getElementById('${nr}').focus()">
+      <input type="text" id="${nr}" placeholder="Role" onkeydown="if(event.key==='Enter')addPersonManage('${pfx}')" style="font-size:11px;padding:5px 8px;border:0.5px solid var(--border2);border-radius:var(--radius);outline:none;font-family:inherit;background:var(--bg);color:var(--text);flex:1.2">
+      <button onclick="addPersonManage('${pfx}')">Add</button>
     </div>
-    <div class="divider"></div>
-    <div class="manage-section" style="margin-bottom:0">
-      <h4 id="mh-services">Service library (${services.length})</h4>
-      <p style="font-size:11px;color:var(--text3);margin-bottom:8px;margin-top:-6px">These appear as options when setting client scope</p>
-      <div class="manage-list" id="services-list">${renderServicesList()}</div>
-      <div class="add-row"><input type="text" id="ns" placeholder="e.g. Email marketing" onkeydown="if(event.key==='Enter')addService()"><button onclick="addService()">Add</button></div>
+  </div>`;
+}
+function renderColTab(cols,pfx,placeholder){
+  const list=cols.length
+    ?cols.map((c,ci)=>`<div class="manage-item">
+      <div class="mib" id="${pfx}_cm_${ci}" onclick="editColInline('${pfx}',${ci})">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="width:7px;height:7px;border-radius:${pfx==='ct'?'50%':'2px'};background:var(--red400);display:inline-block;flex-shrink:0"></span>
+          <span class="mi-name">${c}</span>
+        </div>
+        <div class="mi-hint">click to edit</div>
+      </div>
+      <div class="mia">
+        <button class="ib" onclick="moveCol('${pfx}',${ci},-1)" ${ci===0?'disabled':''}>↑</button>
+        <button class="ib" onclick="moveCol('${pfx}',${ci},1)" ${ci===cols.length-1?'disabled':''}>↓</button>
+        <button class="ib del" onclick="rmColManage('${pfx}',${ci})">×</button>
+      </div>
+    </div>`).join('')
+    :`<div style="font-size:11px;color:var(--text3);padding:6px 0 8px">None yet</div>`;
+  const ni=`${pfx}_ni`;
+  return`<div class="manage-section" style="margin-bottom:0">
+    <div class="manage-list" id="${pfx}-list">${list}</div>
+    <div class="add-row">
+      <input type="text" id="${ni}" placeholder="${placeholder}" onkeydown="if(event.key==='Enter')addColManage('${pfx}')">
+      <button onclick="addColManage('${pfx}')">Add</button>
     </div>
-    <div class="modal-btns"><button class="primary" onclick="closeMW();buildTable()">Done</button></div>
-  </div></div>`;
+  </div>`;
+}
+function renderServicesTab(){
+  const list=services.length
+    ?services.map((s,i)=>`<div class="manage-item">
+      <div class="mib" id="sv_sm_${i}" onclick="editServiceInline(${i})">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="width:7px;height:7px;border-radius:2px;background:var(--red400);display:inline-block;flex-shrink:0"></span>
+          <span class="mi-name">${s}</span>
+        </div>
+        <div class="mi-hint">click to edit</div>
+      </div>
+      <div class="mia">
+        <button class="ib" onclick="moveSv(${i},-1)" ${i===0?'disabled':''}>↑</button>
+        <button class="ib" onclick="moveSv(${i},1)" ${i===services.length-1?'disabled':''}>↓</button>
+        <button class="ib del" onclick="rmSvManage(${i})">×</button>
+      </div>
+    </div>`).join('')
+    :`<div style="font-size:11px;color:var(--text3);padding:6px 0 8px">No services yet</div>`;
+  return`<div class="manage-section" style="margin-bottom:0">
+    <div class="manage-list" id="sv-list">${list}</div>
+    <div class="add-row">
+      <input type="text" id="sv_ni" placeholder="Service name" onkeydown="if(event.key==='Enter')addSvManage()">
+      <button onclick="addSvManage()">Add</button>
+    </div>
+  </div>`;
 }
 
-/* ---- Inline edit helpers ---- */
-function startEditPerson(pi){
-  const el=document.getElementById(`pm_${pi}`);
+/* inline edits */
+function editPersonInline(pfx,pi){
+  const people=pfx==='cp'?cPeople:oPeople;
+  const el=document.getElementById(`${pfx}_pm_${pi}`);
   el.classList.add('editing');
   el.innerHTML=`<div class="edit-fields">
-    <input class="edit-field" id="pe-name-${pi}" value="${people[pi].name}" placeholder="Name" onkeydown="if(event.key==='Enter')savePersonEdit(${pi});if(event.key==='Escape')cancelEdit('people-list',renderPeopleList)">
-    <input class="edit-field" id="pe-role-${pi}" value="${people[pi].role}" placeholder="Role" onkeydown="if(event.key==='Enter')savePersonEdit(${pi});if(event.key==='Escape')cancelEdit('people-list',renderPeopleList)">
+    <input class="ef" id="${pfx}_pen_${pi}" value="${people[pi].name}" placeholder="Name" onkeydown="if(event.key==='Enter')savePersonInline('${pfx}',${pi})">
+    <input class="ef" id="${pfx}_per_${pi}" value="${people[pi].role}" placeholder="Role" onkeydown="if(event.key==='Enter')savePersonInline('${pfx}',${pi})">
   </div>`;
-  document.getElementById(`pe-name-${pi}`).focus();
+  document.getElementById(`${pfx}_pen_${pi}`).focus();
 }
-function savePersonEdit(pi){
-  const n=document.getElementById(`pe-name-${pi}`)?.value.trim();
-  const r=document.getElementById(`pe-role-${pi}`)?.value.trim();
+function savePersonInline(pfx,pi){
+  const people=pfx==='cp'?cPeople:oPeople;
+  const n=document.getElementById(`${pfx}_pen_${pi}`)?.value.trim();
+  const r=document.getElementById(`${pfx}_per_${pi}`)?.value.trim();
   if(n)people[pi].name=n;
   if(r)people[pi].role=r;
-  document.getElementById('people-list').innerHTML=renderPeopleList();
-  scheduleSave();
+  document.getElementById(`${pfx}-list`).innerHTML=renderPeopleTab(people,pfx).match(/id="[^"]*-list">([\s\S]*?)<\/div>\s*<div class="add-row/)?.[1]||'';
+  switchTab(pfx);
+  saveAll();
 }
-function startEditClient(ci){
-  const el=document.getElementById(`cm_${ci}`);
+function editColInline(pfx,ci){
+  const cols=pfx==='ct'?clients:opsFns;
+  const el=document.getElementById(`${pfx}_cm_${ci}`);
   el.classList.add('editing');
   el.innerHTML=`<div class="edit-fields">
-    <input class="edit-field" id="ce-name-${ci}" value="${clients[ci]}" placeholder="Client name" onkeydown="if(event.key==='Enter')saveClientEditManage(${ci});if(event.key==='Escape')cancelEdit('clients-list',renderClientsList)">
+    <input class="ef" id="${pfx}_cen_${ci}" value="${cols[ci]}" placeholder="Name" onkeydown="if(event.key==='Enter')saveColInline('${pfx}',${ci})">
   </div>`;
-  document.getElementById(`ce-name-${ci}`).focus();
+  document.getElementById(`${pfx}_cen_${ci}`).focus();
 }
-function saveClientEditManage(ci){
-  const v=document.getElementById(`ce-name-${ci}`)?.value.trim();
-  if(v)clients[ci]=v;
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  scheduleSave();
+function saveColInline(pfx,ci){
+  const cols=pfx==='ct'?clients:opsFns;
+  const v=document.getElementById(`${pfx}_cen_${ci}`)?.value.trim();
+  if(v)cols[ci]=v;
+  switchTab(pfx);saveAll();
 }
-function startEditService(si){
-  const el=document.getElementById(`sm_${si}`);
+function editServiceInline(i){
+  const el=document.getElementById(`sv_sm_${i}`);
   el.classList.add('editing');
   el.innerHTML=`<div class="edit-fields">
-    <input class="edit-field" id="se-name-${si}" value="${services[si]}" placeholder="Service name" onkeydown="if(event.key==='Enter')saveServiceEdit(${si});if(event.key==='Escape')cancelEdit('services-list',renderServicesList)">
+    <input class="ef" id="sv_sen_${i}" value="${services[i]}" placeholder="Service" onkeydown="if(event.key==='Enter')saveServiceInline(${i})">
   </div>`;
-  document.getElementById(`se-name-${si}`).focus();
+  document.getElementById(`sv_sen_${i}`).focus();
 }
-function saveServiceEdit(si){
-  const v=document.getElementById(`se-name-${si}`)?.value.trim();
+function saveServiceInline(i){
+  const v=document.getElementById(`sv_sen_${i}`)?.value.trim();
   if(v){
-    const old=services[si];services[si]=v;
-    // update any scope state references
-    scopeState.forEach(arr=>{const i=arr.indexOf(old);if(i>=0)arr[i]=v;});
-    cellState.forEach(row=>row.forEach(c=>{if(c.items){const i=c.items.indexOf(old);if(i>=0)c.items[i]=v;}}));
+    const old=services[i];services[i]=v;
+    [cScope,oScope].forEach(arr=>arr.forEach(a=>{const x=a.indexOf(old);if(x>=0)a[x]=v;}));
+    [cCells,oCells].forEach(cells=>cells.forEach(row=>row.forEach(c=>{if(c.items){const x=c.items.indexOf(old);if(x>=0)c.items[x]=v;}})));
   }
-  document.getElementById('services-list').innerHTML=renderServicesList();
-  scheduleSave();
-}
-function cancelEdit(listId,renderFn){
-  document.getElementById(listId).innerHTML=renderFn();
+  switchTab('sv');saveAll();
 }
 
-function reorderItem(arr,from,to){if(to<0||to>=arr.length)return false;arr.splice(to,0,arr.splice(from,1)[0]);return true;}
-function movePerson(pi,dir){
-  if(!reorderItem(people,pi,pi+dir))return;
-  const row=cellState.splice(pi,1)[0];cellState.splice(pi+dir,0,row);
-  document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.getElementById('mh-people').textContent=`Team members (${people.length})`;
-  scheduleSave();
+/* reorder */
+function reorder(arr,from,to){if(to<0||to>=arr.length)return false;arr.splice(to,0,arr.splice(from,1)[0]);return true;}
+function movePeople(pfx,pi,d){
+  const people=pfx==='cp'?cPeople:oPeople;
+  const cells=pfx==='cp'?cCells:oCells;
+  if(!reorder(people,pi,pi+d))return;
+  const r=cells.splice(pi,1)[0];cells.splice(pi+d,0,r);
+  switchTab(pfx);saveAll();
 }
-function moveClient(ci,dir){
-  if(!reorderItem(clients,ci,ci+dir))return;
-  const sc=scopeState.splice(ci,1)[0];scopeState.splice(ci+dir,0,sc);
-  cellState.forEach(row=>{const c=row.splice(ci,1)[0];row.splice(ci+dir,0,c);});
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;
-  scheduleSave();
+function moveCol(pfx,ci,d){
+  const cols=pfx==='ct'?clients:opsFns;
+  const scope=pfx==='ct'?cScope:oScope;
+  const cells=pfx==='ct'?cCells:oCells;
+  if(!reorder(cols,ci,ci+d))return;
+  const s=scope.splice(ci,1)[0];scope.splice(ci+d,0,s);
+  cells.forEach(r=>{const c=r.splice(ci,1)[0];r.splice(ci+d,0,c);});
+  switchTab(pfx);saveAll();
 }
-function moveService(si,dir){
-  if(!reorderItem(services,si,si+dir))return;
-  document.getElementById('services-list').innerHTML=renderServicesList();
-  document.getElementById('mh-services').textContent=`Service library (${services.length})`;
-  scheduleSave();
-}
-
-function renderPeopleList(){
-  if(!people.length)return`<div class="no-scope" style="padding:6px 0 10px">No team members yet</div>`;
-  return people.map((p,pi)=>`<div class="manage-item">
-    <div class="manage-item-body" id="pm_${pi}" onclick="startEditPerson(${pi})" title="Click to edit">
-      <div style="display:flex;align-items:center;gap:8px"><span class="av ${avClass(pi)}" style="width:24px;height:24px;font-size:9px">${initials(p.name)}</span>
-      <div><div class="manage-item-name">${p.name}</div><div class="manage-item-role">${p.role}</div></div></div>
-      <div class="manage-item-hint">click to edit</div>
-    </div>
-    <div class="manage-item-actions">
-      <button class="icon-btn" onclick="movePerson(${pi},-1)" ${pi===0?'disabled':''}>↑</button>
-      <button class="icon-btn" onclick="movePerson(${pi},1)" ${pi===people.length-1?'disabled':''}>↓</button>
-      <button class="icon-btn del" onclick="removePerson(${pi})">×</button>
-    </div>
-  </div>`).join('');
-}
-function renderClientsList(){
-  if(!clients.length)return`<div class="no-scope" style="padding:6px 0 10px">No clients yet</div>`;
-  return clients.map((c,ci)=>`<div class="manage-item">
-    <div class="manage-item-body" id="cm_${ci}" onclick="startEditClient(${ci})" title="Click to edit">
-      <div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red400);display:inline-block;flex-shrink:0"></span>
-      <span class="manage-item-name">${c}</span></div>
-      <div class="manage-item-hint">click to edit</div>
-    </div>
-    <div class="manage-item-actions">
-      <button class="icon-btn" onclick="moveClient(${ci},-1)" ${ci===0?'disabled':''}>↑</button>
-      <button class="icon-btn" onclick="moveClient(${ci},1)" ${ci===clients.length-1?'disabled':''}>↓</button>
-      <button class="icon-btn del" onclick="removeClient(${ci})">×</button>
-    </div>
-  </div>`).join('');
-}
-function renderServicesList(){
-  if(!services.length)return`<div class="no-scope" style="padding:6px 0 10px">No services yet</div>`;
-  return services.map((s,i)=>`<div class="manage-item">
-    <div class="manage-item-body" id="sm_${i}" onclick="startEditService(${i})" title="Click to edit">
-      <div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:2px;background:var(--red400);display:inline-block;flex-shrink:0"></span>
-      <span class="manage-item-name">${s}</span></div>
-      <div class="manage-item-hint">click to edit</div>
-    </div>
-    <div class="manage-item-actions">
-      <button class="icon-btn" onclick="moveService(${i},-1)" ${i===0?'disabled':''}>↑</button>
-      <button class="icon-btn" onclick="moveService(${i},1)" ${i===services.length-1?'disabled':''}>↓</button>
-      <button class="icon-btn del" onclick="removeService(${i})">×</button>
-    </div>
-  </div>`).join('');
+function moveSv(i,d){
+  if(!reorder(services,i,i+d))return;
+  switchTab('sv');saveAll();
 }
 
-function addPerson(){
-  const n=document.getElementById('np-name').value.trim();const r=document.getElementById('np-role').value.trim();if(!n)return;
-  people.push({name:n,role:r||'Team member'});cellState.push(clients.map(()=>({primary:'',items:[],owner:false})));
-  document.getElementById('np-name').value='';document.getElementById('np-role').value='';
-  document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.getElementById('mh-people').textContent=`Team members (${people.length})`;scheduleSave();
+/* add */
+function addPersonManage(pfx){
+  const np=pfx==='cp'?'cnp':'onp';
+  const nr=pfx==='cp'?'cnr':'onr';
+  const n=document.getElementById(np)?.value.trim();
+  const r=document.getElementById(nr)?.value.trim();
+  if(!n)return;
+  const people=pfx==='cp'?cPeople:oPeople;
+  const cells=pfx==='cp'?cCells:oCells;
+  const cols=pfx==='cp'?clients:opsFns;
+  people.push({name:n,role:r||'Team member'});
+  cells.push(cols.map(()=>ef()));
+  document.getElementById(np).value='';
+  document.getElementById(nr).value='';
+  switchTab(pfx);saveAll();
 }
-function removePerson(pi){
-  if(!confirm(`Remove ${people[pi].name}?`))return;
-  people.splice(pi,1);cellState.splice(pi,1);
-  document.getElementById('people-list').innerHTML=renderPeopleList();
-  document.getElementById('mh-people').textContent=`Team members (${people.length})`;scheduleSave();
+function addColManage(pfx){
+  const v=document.getElementById(`${pfx}_ni`)?.value.trim();
+  if(!v)return;
+  if(pfx==='ct'){clients.push(v);cScope.push([]);cCells.forEach(r=>r.push(ef()));}
+  else{opsFns.push(v);oScope.push([]);oCells.forEach(r=>r.push(ef()));}
+  document.getElementById(`${pfx}_ni`).value='';
+  switchTab(pfx);saveAll();
 }
-function addClient(){
-  const v=document.getElementById('nc').value.trim();if(!v)return;
-  clients.push(v);scopeState.push([]);cellState.forEach(row=>row.push({primary:'',items:[],owner:false}));
-  document.getElementById('nc').value='';
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;scheduleSave();
+function addSvManage(){
+  const v=document.getElementById('sv_ni')?.value.trim();
+  if(!v||services.includes(v))return;
+  services.push(v);
+  document.getElementById('sv_ni').value='';
+  switchTab('sv');saveAll();
 }
-function removeClient(ci){
-  if(!confirm(`Remove "${clients[ci]}"?`))return;
-  clients.splice(ci,1);scopeState.splice(ci,1);cellState.forEach(row=>row.splice(ci,1));
-  document.getElementById('clients-list').innerHTML=renderClientsList();
-  document.getElementById('mh-clients').textContent=`Clients (${clients.length})`;scheduleSave();
+
+/* remove */
+function rmPersonManage(pfx,pi){
+  const people=pfx==='cp'?cPeople:oPeople;
+  const cells=pfx==='cp'?cCells:oCells;
+  if(!confirm(`Remove ${people[pi].name} from this section?`))return;
+  people.splice(pi,1);cells.splice(pi,1);
+  switchTab(pfx);saveAll();
 }
-function addService(){
-  const v=document.getElementById('ns').value.trim();if(!v)return;
-  if(!services.includes(v)){services.push(v);document.getElementById('ns').value='';
-    document.getElementById('services-list').innerHTML=renderServicesList();
-    document.getElementById('mh-services').textContent=`Service library (${services.length})`;scheduleSave();}
-  else document.getElementById('ns').value='';
+function rmColManage(pfx,ci){
+  const cols=pfx==='ct'?clients:opsFns;
+  if(!confirm(`Remove "${cols[ci]}"? All assignments for this column will be deleted.`))return;
+  if(pfx==='ct'){clients.splice(ci,1);cScope.splice(ci,1);cCells.forEach(r=>r.splice(ci,1));}
+  else{opsFns.splice(ci,1);oScope.splice(ci,1);oCells.forEach(r=>r.splice(ci,1));}
+  switchTab(pfx);saveAll();
 }
-function removeService(i){
+function rmSvManage(i){
+  if(!confirm(`Remove "${services[i]}" from the library?`))return;
   services.splice(i,1);
-  document.getElementById('services-list').innerHTML=renderServicesList();
-  document.getElementById('mh-services').textContent=`Service library (${services.length})`;scheduleSave();
+  switchTab('sv');saveAll();
 }
-function confirmDeletePerson(pi,e){
-  e.stopPropagation();if(!confirm(`Remove ${people[pi].name}?`))return;
-  people.splice(pi,1);cellState.splice(pi,1);scheduleSave();buildTable();
-}
-function confirmDeleteClient(ci,e){
-  e.stopPropagation();if(!confirm(`Remove "${clients[ci]}"?`))return;
-  clients.splice(ci,1);scopeState.splice(ci,1);cellState.forEach(row=>row.splice(ci,1));scheduleSave();buildTable();
-}
+
 function closeMW(e){
-  if(!e||e.target.classList.contains('modal-bg'))document.getElementById('modal-wrap').innerHTML='';
+  if(!e||e.target.classList.contains('modal-bg'))
+    document.getElementById('modal-wrap').innerHTML='';
 }
-(async()=>{await loadData();buildTable();})();
+
+(async()=>{await loadData();buildAll();})();
 </script>
 </body>
 </html>
